@@ -96,6 +96,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
         //makes background
         bgImage.position = (CGPointMake(size.width/2, size.height/2))
         bgImage.size = size
+        bgImage.zPosition = 0
         self.addChild(bgImage)
         
         //makes score label
@@ -111,6 +112,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
         self.scoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
         self.scoreLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Top
         self.scoreLabel.position = CGPoint(x: 10 , y:screenSize.height - 15)
+        self.scoreLabel.zPosition = 1
         
         self.addChild(self.scoreLabel)
         
@@ -118,16 +120,19 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
         
         let main_squirrel = MainSquirrel.squirrel(CGPoint(x: size.width/2, y: size.height/1.6))
         main_squirrel.name = "hero"
+        main_squirrel.zPosition = 1
         self.addChild(main_squirrel)
         
         
         
         let trampoline = TrampolineNode.trampolineMake(CGPoint(x: size.width/2, y: size.height/6))
         trampoline.size.width = size.width - 0.1*size.width
+        trampoline.zPosition = 1
         self.addChild(trampoline)
         
         let trampoline_line = TrampolineLineNode.trampolineLineMake(CGPoint(x: size.width/2, y: size.height/6))
         trampoline_line.size.width = size.width - 0.1*size.width
+        trampoline_line.zPosition = 1
         self.addChild(trampoline_line)
         
         backgroundColor = SKColor.blueColor()
@@ -148,6 +153,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
         // Position the monster slightly off-screen along the right edge,
         // and along a random position along the Y axis as calculated above
         let villain_squirrel_flying = VillainSquirrelFlying.squirrel(CGPoint(x: size.width + 200 , y: actualY))
+        villain_squirrel_flying.zPosition = 1
         
         // Add the monster to the scene
         addChild(villain_squirrel_flying)
@@ -171,7 +177,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
         // Position the monster slightly off-screen along the right edge,
         // and along a random position along the Y axis as calculated above
         let villain_squirrel_type1 = VillainSquirrel.squirrel(CGPoint(x: size.width - size.width/5 , y: actualY))
-        
+        villain_squirrel_type1.zPosition = 1
         // Add the monster to the scene
         addChild(villain_squirrel_type1)
         
