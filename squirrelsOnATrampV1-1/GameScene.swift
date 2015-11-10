@@ -7,39 +7,81 @@
 //
 
 import SpriteKit
+import CoreMotion
+import UIKit
+
+
+
 
 class GameScene: SKScene {
-    override func didMoveToView(view: SKView) {
-        /* Setup your scene here */
-        let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-        myLabel.text = "Hello, World!";
-        myLabel.fontSize = 65;
-        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
+    
+    var bgImage = SKSpriteNode(imageNamed: "squirrelsOnATrampBackgroundV2.jpg")
+    let playButton = SKSpriteNode(imageNamed: "play_button1.png")
+    var highScoreLabel = SKLabelNode(fontNamed: "Chalkduster")
+    
+    var contentCreated = false
+    
+    override func didMoveToView(view: SKView)
+    {
+        if (!contentCreated){
+            create_content()
+            contentCreated = true
+        }
+        else
+        {
+            self.highScoreLabel.text = String(NSUserDefaults.standardUserDefaults().integerForKey("squirrelTrampHighScore1"))
+
+        }
         
-        self.addChild(myLabel)
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        /* Called when a touch begins */
-        
-        for touch in (touches as! Set<UITouch>) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        for touch: AnyObject in touches{
             let location = touch.locationInNode(self)
-            
-            let sprite = SKSpriteNode(imageNamed:"Spaceship")
-            
-            sprite.xScale = 0.5
-            sprite.yScale = 0.5
-            sprite.position = location
-            
-            let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
-            
-            sprite.runAction(SKAction.repeatActionForever(action))
-            
-            self.addChild(sprite)
+            if(self.nodeAtPoint(location) == self.playButton){
+                destroy_content()
+                let scene = PlayScene(size: self.size)
+                scene.scaleMode = .AspectFill
+                view!.presentScene(scene)
+            }
         }
     }
-   
-    override func update(currentTime: CFTimeInterval) {
-        /* Called before each frame is rendered */
+    
+    func create_content(){
+        
+        bgImage.position = (CGPointMake(size.width/2, size.height/2))
+        bgImage.size = size
+        self.addChild(bgImage)
+        
+        playButton.position = CGPointMake(size.width/2, size.height/3)
+        playButton.xScale = 0.5
+        playButton.yScale = 0.5
+        self.addChild(playButton)
+        
+        var highScoreLabelLabel = SKLabelNode(fontNamed: "Chalkduster")
+        highScoreLabelLabel.text = "Your Best..."
+        highScoreLabelLabel.fontSize = 30;
+        highScoreLabelLabel.position = CGPointMake(size.width/2, size.height/1.333)
+        highScoreLabelLabel.name = "highScoreLabelLabel"
+        self.addChild(highScoreLabelLabel)
+        
+        self.highScoreLabel.text = String(NSUserDefaults.standardUserDefaults().integerForKey("squirrelTrampHighScore1"))
+        self.highScoreLabel.fontSize = 30;
+        self.highScoreLabel.position = CGPointMake(size.width/2, size.height/2)
+        self.highScoreLabel.name = "highScoreLabel"
+        self.addChild(highScoreLabel)
+
+        
+    }
+    
+    func destroy_content(){
+        for child in self.children
+        {
+            removeChildrenInArray([child])
+        }
+        print("removed the children")
+        contentCreated = false
+        
     }
 }
+

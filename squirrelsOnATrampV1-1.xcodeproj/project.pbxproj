@@ -7,14 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A17DE381B1D4F79001DDC81 /* red_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A17DE371B1D4F79001DDC81 /* red_arrow.png */; };
+		4A4CBF371B4B87820076B6D2 /* redMarkGimp.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A4CBF361B4B87820076B6D2 /* redMarkGimp.png */; };
+		4AAB459F1B2D347D00DF0E28 /* play_button1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AAB459E1B2D347D00DF0E28 /* play_button1.png */; };
+		4ABBEA6C1B49B89B001D0887 /* squirrelsOnATrampBackgroundV2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4ABBEA6B1B49B89B001D0887 /* squirrelsOnATrampBackgroundV2.jpg */; };
+		4ABBEA6E1B4A4A28001D0887 /* redMarker.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4ABBEA6D1B4A4A28001D0887 /* redMarker.jpg */; };
 		4AC0CEC31B13F7D500F05FC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC0CEC21B13F7D500F05FC9 /* AppDelegate.swift */; };
-		4AC0CEC51B13F7D500F05FC9 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AC0CEC41B13F7D500F05FC9 /* GameScene.sks */; };
 		4AC0CEC71B13F7D500F05FC9 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC0CEC61B13F7D500F05FC9 /* GameScene.swift */; };
 		4AC0CEC91B13F7D500F05FC9 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC0CEC81B13F7D500F05FC9 /* GameViewController.swift */; };
 		4AC0CECC1B13F7D500F05FC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AC0CECA1B13F7D500F05FC9 /* Main.storyboard */; };
 		4AC0CECE1B13F7D500F05FC9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AC0CECD1B13F7D500F05FC9 /* Images.xcassets */; };
 		4AC0CED11B13F7D500F05FC9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AC0CECF1B13F7D500F05FC9 /* LaunchScreen.xib */; };
 		4AC0CEDD1B13F7D600F05FC9 /* squirrelsOnATrampV1_1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC0CEDC1B13F7D600F05FC9 /* squirrelsOnATrampV1_1Tests.swift */; };
+		4AC0CEEB1B13F87500F05FC9 /* MainSquirrelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC0CEE61B13F87500F05FC9 /* MainSquirrelNode.swift */; };
+		4AC0CEEC1B13F87500F05FC9 /* VillainSquirrelFlyingNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC0CEE71B13F87500F05FC9 /* VillainSquirrelFlyingNode.swift */; };
+		4AC0CEED1B13F87500F05FC9 /* VillainSquirrelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC0CEE81B13F87500F05FC9 /* VillainSquirrelNode.swift */; };
+		4AC0CEEE1B13F87500F05FC9 /* TrampolineNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC0CEE91B13F87500F05FC9 /* TrampolineNode.swift */; };
+		4AC0CEEF1B13F87500F05FC9 /* TrampolineLineNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC0CEEA1B13F87500F05FC9 /* TrampolineLineNode.swift */; };
+		4AC0CEF61B13F8A200F05FC9 /* trampolineLineV1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AC0CEF01B13F8A200F05FC9 /* trampolineLineV1.png */; };
+		4AC0CEF71B13F8A200F05FC9 /* backgroundV1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AC0CEF11B13F8A200F05FC9 /* backgroundV1.png */; };
+		4AC0CEF81B13F8A200F05FC9 /* villainSquirrelFlyingV1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AC0CEF21B13F8A200F05FC9 /* villainSquirrelFlyingV1.png */; };
+		4AC0CEF91B13F8A200F05FC9 /* trampolineV1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AC0CEF31B13F8A200F05FC9 /* trampolineV1.png */; };
+		4AC0CEFA1B13F8A200F05FC9 /* squirrelV1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AC0CEF41B13F8A200F05FC9 /* squirrelV1.png */; };
+		4AC0CEFB1B13F8A200F05FC9 /* villainSquirrelV1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AC0CEF51B13F8A200F05FC9 /* villainSquirrelV1.png */; };
+		4AC0CEFD1B14164D00F05FC9 /* PlayScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC0CEFC1B14164D00F05FC9 /* PlayScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,10 +44,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4A17DE371B1D4F79001DDC81 /* red_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_arrow.png; sourceTree = "<group>"; };
+		4A4CBF361B4B87820076B6D2 /* redMarkGimp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redMarkGimp.png; sourceTree = "<group>"; };
+		4AAB459E1B2D347D00DF0E28 /* play_button1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_button1.png; sourceTree = "<group>"; };
+		4ABBEA6B1B49B89B001D0887 /* squirrelsOnATrampBackgroundV2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = squirrelsOnATrampBackgroundV2.jpg; sourceTree = "<group>"; };
+		4ABBEA6D1B4A4A28001D0887 /* redMarker.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = redMarker.jpg; sourceTree = "<group>"; };
 		4AC0CEBD1B13F7D500F05FC9 /* squirrelsOnATrampV1-1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "squirrelsOnATrampV1-1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AC0CEC11B13F7D500F05FC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4AC0CEC21B13F7D500F05FC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4AC0CEC41B13F7D500F05FC9 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		4AC0CEC61B13F7D500F05FC9 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		4AC0CEC81B13F7D500F05FC9 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		4AC0CECB1B13F7D500F05FC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -40,6 +60,18 @@
 		4AC0CED61B13F7D600F05FC9 /* squirrelsOnATrampV1-1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "squirrelsOnATrampV1-1Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AC0CEDB1B13F7D600F05FC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4AC0CEDC1B13F7D600F05FC9 /* squirrelsOnATrampV1_1Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = squirrelsOnATrampV1_1Tests.swift; sourceTree = "<group>"; };
+		4AC0CEE61B13F87500F05FC9 /* MainSquirrelNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSquirrelNode.swift; sourceTree = "<group>"; };
+		4AC0CEE71B13F87500F05FC9 /* VillainSquirrelFlyingNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VillainSquirrelFlyingNode.swift; sourceTree = "<group>"; };
+		4AC0CEE81B13F87500F05FC9 /* VillainSquirrelNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VillainSquirrelNode.swift; sourceTree = "<group>"; };
+		4AC0CEE91B13F87500F05FC9 /* TrampolineNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrampolineNode.swift; sourceTree = "<group>"; };
+		4AC0CEEA1B13F87500F05FC9 /* TrampolineLineNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrampolineLineNode.swift; sourceTree = "<group>"; };
+		4AC0CEF01B13F8A200F05FC9 /* trampolineLineV1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trampolineLineV1.png; sourceTree = "<group>"; };
+		4AC0CEF11B13F8A200F05FC9 /* backgroundV1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundV1.png; sourceTree = "<group>"; };
+		4AC0CEF21B13F8A200F05FC9 /* villainSquirrelFlyingV1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = villainSquirrelFlyingV1.png; sourceTree = "<group>"; };
+		4AC0CEF31B13F8A200F05FC9 /* trampolineV1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trampolineV1.png; sourceTree = "<group>"; };
+		4AC0CEF41B13F8A200F05FC9 /* squirrelV1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = squirrelV1.png; sourceTree = "<group>"; };
+		4AC0CEF51B13F8A200F05FC9 /* villainSquirrelV1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = villainSquirrelV1.png; sourceTree = "<group>"; };
+		4AC0CEFC1B14164D00F05FC9 /* PlayScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,12 +114,28 @@
 			isa = PBXGroup;
 			children = (
 				4AC0CEC21B13F7D500F05FC9 /* AppDelegate.swift */,
-				4AC0CEC41B13F7D500F05FC9 /* GameScene.sks */,
+				4AC0CEFC1B14164D00F05FC9 /* PlayScene.swift */,
 				4AC0CEC61B13F7D500F05FC9 /* GameScene.swift */,
 				4AC0CEC81B13F7D500F05FC9 /* GameViewController.swift */,
+				4AC0CEE61B13F87500F05FC9 /* MainSquirrelNode.swift */,
+				4AC0CEE71B13F87500F05FC9 /* VillainSquirrelFlyingNode.swift */,
+				4AC0CEE81B13F87500F05FC9 /* VillainSquirrelNode.swift */,
+				4AC0CEE91B13F87500F05FC9 /* TrampolineNode.swift */,
+				4AC0CEEA1B13F87500F05FC9 /* TrampolineLineNode.swift */,
 				4AC0CECA1B13F7D500F05FC9 /* Main.storyboard */,
 				4AC0CECD1B13F7D500F05FC9 /* Images.xcassets */,
 				4AC0CECF1B13F7D500F05FC9 /* LaunchScreen.xib */,
+				4A4CBF361B4B87820076B6D2 /* redMarkGimp.png */,
+				4ABBEA6D1B4A4A28001D0887 /* redMarker.jpg */,
+				4A17DE371B1D4F79001DDC81 /* red_arrow.png */,
+				4AC0CEF01B13F8A200F05FC9 /* trampolineLineV1.png */,
+				4AC0CEF11B13F8A200F05FC9 /* backgroundV1.png */,
+				4AAB459E1B2D347D00DF0E28 /* play_button1.png */,
+				4ABBEA6B1B49B89B001D0887 /* squirrelsOnATrampBackgroundV2.jpg */,
+				4AC0CEF21B13F8A200F05FC9 /* villainSquirrelFlyingV1.png */,
+				4AC0CEF31B13F8A200F05FC9 /* trampolineV1.png */,
+				4AC0CEF41B13F8A200F05FC9 /* squirrelV1.png */,
+				4AC0CEF51B13F8A200F05FC9 /* villainSquirrelV1.png */,
 				4AC0CEC01B13F7D500F05FC9 /* Supporting Files */,
 			);
 			path = "squirrelsOnATrampV1-1";
@@ -162,7 +210,8 @@
 		4AC0CEB51B13F7D500F05FC9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Markus Notti";
 				TargetAttributes = {
 					4AC0CEBC1B13F7D500F05FC9 = {
@@ -198,10 +247,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4ABBEA6C1B49B89B001D0887 /* squirrelsOnATrampBackgroundV2.jpg in Resources */,
 				4AC0CED11B13F7D500F05FC9 /* LaunchScreen.xib in Resources */,
+				4AC0CEF61B13F8A200F05FC9 /* trampolineLineV1.png in Resources */,
+				4ABBEA6E1B4A4A28001D0887 /* redMarker.jpg in Resources */,
+				4AC0CEF81B13F8A200F05FC9 /* villainSquirrelFlyingV1.png in Resources */,
+				4A4CBF371B4B87820076B6D2 /* redMarkGimp.png in Resources */,
+				4AAB459F1B2D347D00DF0E28 /* play_button1.png in Resources */,
+				4AC0CEF91B13F8A200F05FC9 /* trampolineV1.png in Resources */,
 				4AC0CECE1B13F7D500F05FC9 /* Images.xcassets in Resources */,
-				4AC0CEC51B13F7D500F05FC9 /* GameScene.sks in Resources */,
+				4A17DE381B1D4F79001DDC81 /* red_arrow.png in Resources */,
+				4AC0CEF71B13F8A200F05FC9 /* backgroundV1.png in Resources */,
 				4AC0CECC1B13F7D500F05FC9 /* Main.storyboard in Resources */,
+				4AC0CEFB1B13F8A200F05FC9 /* villainSquirrelV1.png in Resources */,
+				4AC0CEFA1B13F8A200F05FC9 /* squirrelV1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,9 +278,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AC0CEED1B13F87500F05FC9 /* VillainSquirrelNode.swift in Sources */,
 				4AC0CEC71B13F7D500F05FC9 /* GameScene.swift in Sources */,
 				4AC0CEC91B13F7D500F05FC9 /* GameViewController.swift in Sources */,
+				4AC0CEFD1B14164D00F05FC9 /* PlayScene.swift in Sources */,
+				4AC0CEEE1B13F87500F05FC9 /* TrampolineNode.swift in Sources */,
+				4AC0CEEF1B13F87500F05FC9 /* TrampolineLineNode.swift in Sources */,
+				4AC0CEEC1B13F87500F05FC9 /* VillainSquirrelFlyingNode.swift in Sources */,
 				4AC0CEC31B13F7D500F05FC9 /* AppDelegate.swift in Sources */,
+				4AC0CEEB1B13F87500F05FC9 /* MainSquirrelNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +349,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -350,6 +416,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "squirrelsOnATrampV1-1/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nottiApps.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -360,6 +427,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "squirrelsOnATrampV1-1/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nottiApps.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -378,6 +446,7 @@
 				);
 				INFOPLIST_FILE = "squirrelsOnATrampV1-1Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nottiApps.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/squirrelsOnATrampV1-1.app/squirrelsOnATrampV1-1";
 			};
@@ -393,6 +462,7 @@
 				);
 				INFOPLIST_FILE = "squirrelsOnATrampV1-1Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nottiApps.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/squirrelsOnATrampV1-1.app/squirrelsOnATrampV1-1";
 			};
@@ -417,6 +487,7 @@
 				4AC0CEE21B13F7D600F05FC9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4AC0CEE31B13F7D600F05FC9 /* Build configuration list for PBXNativeTarget "squirrelsOnATrampV1-1Tests" */ = {
 			isa = XCConfigurationList;
@@ -425,6 +496,7 @@
 				4AC0CEE51B13F7D600F05FC9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
