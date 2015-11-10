@@ -15,8 +15,6 @@ import SpriteKit
 class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
 
     let motionManager: CMMotionManager = CMMotionManager()
-    
-    var contentCreated = false
     let heroCategory : UInt32 = 0x1 << 0
     let villainCategory : UInt32 = 0x1 << 1
     var score = 0
@@ -33,7 +31,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
     
     override func didMoveToView(view: SKView) {
         
-        contentCreated = false
         score = 0
         
         var swipeUp = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
@@ -47,18 +44,14 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
         
         physicsWorld.contactDelegate = self
 
-        if (!contentCreated) {
-            createContent()
-            contentCreated = true
-        }
-        
+        createContent()
+
         if motionManager.accelerometerAvailable == true {
             self.motionManager.startAccelerometerUpdatesToQueue(NSOperationQueue()) {
                 (data, error) in
                 
                 if (data!.acceleration.y != 0) {
                     
-                    self.motionManager.accelerometerActive == true
                     if(!self.gameOver){
                     //self.handle_tilt(CGFloat(data!.acceleration.y))
                         self.childNodeWithName("hero")?.physicsBody?.applyForce(CGVectorMake(CGFloat((data?.acceleration.y)!) * 50, 0))

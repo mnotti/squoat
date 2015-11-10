@@ -26,7 +26,6 @@ class GameScene: SKScene {
         for touch: AnyObject in touches{
             let location = touch.locationInNode(self)
             if(self.nodeAtPoint(location) == self.playButton){
-                destroy_content()
                 let scene = PlayScene(size: self.size)
                 scene.scaleMode = .AspectFill
                 view!.presentScene(scene)
@@ -68,15 +67,6 @@ class GameScene: SKScene {
         self.addChild(highScoreLabel)
 
         
-    }
-    
-    func destroy_content(){
-        for child in self.children
-        {
-            print("removing child")
-            removeChildrenInArray([child])
-            
-        }
     }
 }
 
