@@ -286,11 +286,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
         saveScore(score)
         
         
-        for child in self.children
-        {
-            removeChildrenInArray([child])
-        }
-        
         let scene = GameScene(size: self.size)
         scene.scaleMode = .AspectFill
         
