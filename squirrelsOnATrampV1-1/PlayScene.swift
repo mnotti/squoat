@@ -33,11 +33,11 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
         
         score = 0
         
-        var swipeUp = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
         swipeUp.direction = UISwipeGestureRecognizerDirection.Up
         self.view!.addGestureRecognizer(swipeUp)
         
-        var swipeDown = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
         swipeDown.direction = UISwipeGestureRecognizerDirection.Down
         self.view!.addGestureRecognizer(swipeDown)
         
@@ -45,17 +45,22 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
         physicsWorld.contactDelegate = self
 
         createContent()
+        
+        let seconds = 1.0
+        let delay = seconds * Double(NSEC_PER_SEC)  // nanoseconds per seconds
+        let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+        
+        dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+            //to delay
+        })
 
-        if motionManager.accelerometerAvailable == true {
+        if (self.motionManager.accelerometerAvailable == true) {
             self.motionManager.startAccelerometerUpdatesToQueue(NSOperationQueue()) {
                 (data, error) in
                 
-                if (data!.acceleration.y != 0) {
-                    
-                    if(!self.gameOver){
+                if (data!.acceleration.y != 0 && !self.gameOver) {
                     //self.handle_tilt(CGFloat(data!.acceleration.y))
                         self.childNodeWithName("hero")?.physicsBody?.applyForce(CGVectorMake(CGFloat((data?.acceleration.y)!) * 50, 0))
-                    }
                 }
                     
                 
@@ -99,12 +104,11 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
         
         let screenSize: CGRect = UIScreen.mainScreen().bounds
         
-        let screenWidth = screenSize.width
         let screenHeight = screenSize.height
         
         self.scoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
         self.scoreLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Top
-        self.scoreLabel.position = CGPoint(x: 10 , y:screenSize.height - 15)
+        self.scoreLabel.position = CGPoint(x: 10 , y:screenHeight - 15)
         self.scoreLabel.zPosition = 1
         
         self.addChild(self.scoreLabel)
@@ -197,8 +201,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
     
     override func update(currentTime: CFTimeInterval) {
         if (childNodeWithName("hero") != nil){
-        var xPos = childNodeWithName("hero")?.position.x
-        var yPos = childNodeWithName("hero")?.position.y
+        let xPos = childNodeWithName("hero")?.position.x
+        let yPos = childNodeWithName("hero")?.position.y
         
         
         if(xPos > size.width
@@ -224,8 +228,10 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
                 self.addedMarker = false
             }
         }
-
-        score++
+            
+        if (!self.gameOver){
+            score++
+        }
         self.scoreLabel.text = "Score: " + String(score)
         }
         
@@ -274,16 +280,20 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
             }
         }
         
+        let seconds = 1.0
+        let delay = seconds * Double(NSEC_PER_SEC)  // nanoseconds per seconds
+        let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+        
+        dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+            let scene = GameScene(size: self.size)
+            scene.scaleMode = .AspectFill
+            self.view?.presentScene(scene)
+        })
+        
         
         //saves the score or doesn't (if it doesn't make the high score
         saveScore(score)
-        
-        
-        let scene = GameScene(size: self.size)
-        scene.scaleMode = .AspectFill
-        
 
-        view?.presentScene(scene)
         
         }
     

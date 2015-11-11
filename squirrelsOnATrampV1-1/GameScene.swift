@@ -46,7 +46,6 @@ class GameScene: SKScene {
         playButton.yScale = 0.5
         playButton.zPosition = 1
         self.addChild(playButton)
-        print("added playbutton")
         
         
         let highScoreLabelLabel = SKLabelNode(fontNamed: "Chalkduster")
