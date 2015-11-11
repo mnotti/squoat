@@ -1,0 +1,11 @@
+-markers for villain squirrels when they're off the top of the screen
+--> maybe also a distance count for how far off?
+
+-check marker's functionality for main squirrel...does it move with the squirrel off screen
+
+-falling squirrels fall at random places in random directions
+
+-flying squirrels fly higher(closer to top of screen/off screen)
+-->can also fly super low, skimming the trampoline
+
+

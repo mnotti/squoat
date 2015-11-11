@@ -92,6 +92,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A486D8D1BF30DBD00817AD1 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				4A4CBF361B4B87820076B6D2 /* redMarkGimp.png */,
+				4ABBEA6D1B4A4A28001D0887 /* redMarker.jpg */,
+				4A17DE371B1D4F79001DDC81 /* red_arrow.png */,
+				4AC0CEF01B13F8A200F05FC9 /* trampolineLineV1.png */,
+				4AC0CEF11B13F8A200F05FC9 /* backgroundV1.png */,
+				4AAB459E1B2D347D00DF0E28 /* play_button1.png */,
+				4ABBEA6B1B49B89B001D0887 /* squirrelsOnATrampBackgroundV2.jpg */,
+				4AC0CEF21B13F8A200F05FC9 /* villainSquirrelFlyingV1.png */,
+				4AC0CEF31B13F8A200F05FC9 /* trampolineV1.png */,
+				4AC0CEF41B13F8A200F05FC9 /* squirrelV1.png */,
+				4AC0CEF51B13F8A200F05FC9 /* villainSquirrelV1.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
 		4AC0CEB41B13F7D500F05FC9 = {
 			isa = PBXGroup;
 			children = (
@@ -125,17 +143,7 @@
 				4AC0CECA1B13F7D500F05FC9 /* Main.storyboard */,
 				4AC0CECD1B13F7D500F05FC9 /* Images.xcassets */,
 				4AC0CECF1B13F7D500F05FC9 /* LaunchScreen.xib */,
-				4A4CBF361B4B87820076B6D2 /* redMarkGimp.png */,
-				4ABBEA6D1B4A4A28001D0887 /* redMarker.jpg */,
-				4A17DE371B1D4F79001DDC81 /* red_arrow.png */,
-				4AC0CEF01B13F8A200F05FC9 /* trampolineLineV1.png */,
-				4AC0CEF11B13F8A200F05FC9 /* backgroundV1.png */,
-				4AAB459E1B2D347D00DF0E28 /* play_button1.png */,
-				4ABBEA6B1B49B89B001D0887 /* squirrelsOnATrampBackgroundV2.jpg */,
-				4AC0CEF21B13F8A200F05FC9 /* villainSquirrelFlyingV1.png */,
-				4AC0CEF31B13F8A200F05FC9 /* trampolineV1.png */,
-				4AC0CEF41B13F8A200F05FC9 /* squirrelV1.png */,
-				4AC0CEF51B13F8A200F05FC9 /* villainSquirrelV1.png */,
+				4A486D8D1BF30DBD00817AD1 /* images */,
 				4AC0CEC01B13F7D500F05FC9 /* Supporting Files */,
 			);
 			path = "squirrelsOnATrampV1-1";
