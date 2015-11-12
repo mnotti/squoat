@@ -11,6 +11,7 @@ import UIKit
 import SpriteKit
 
 class MainSquirrel: SKSpriteNode {
+    
     class func squirrel(location: CGPoint) -> MainSquirrel {
         let sprite = MainSquirrel(imageNamed:"squirrelV1.png")
         

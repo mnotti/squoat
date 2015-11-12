@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4A17DE381B1D4F79001DDC81 /* red_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A17DE371B1D4F79001DDC81 /* red_arrow.png */; };
+		4A486D931BF422C100817AD1 /* brownMarkerTrans.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A486D921BF422C100817AD1 /* brownMarkerTrans.png */; settings = {ASSET_TAGS = (); }; };
 		4A4CBF371B4B87820076B6D2 /* redMarkGimp.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A4CBF361B4B87820076B6D2 /* redMarkGimp.png */; };
 		4AAB459F1B2D347D00DF0E28 /* play_button1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AAB459E1B2D347D00DF0E28 /* play_button1.png */; };
 		4ABBEA6C1B49B89B001D0887 /* squirrelsOnATrampBackgroundV2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4ABBEA6B1B49B89B001D0887 /* squirrelsOnATrampBackgroundV2.jpg */; };
@@ -45,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		4A17DE371B1D4F79001DDC81 /* red_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_arrow.png; sourceTree = "<group>"; };
+		4A486D921BF422C100817AD1 /* brownMarkerTrans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brownMarkerTrans.png; sourceTree = "<group>"; };
 		4A4CBF361B4B87820076B6D2 /* redMarkGimp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redMarkGimp.png; sourceTree = "<group>"; };
 		4AAB459E1B2D347D00DF0E28 /* play_button1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_button1.png; sourceTree = "<group>"; };
 		4ABBEA6B1B49B89B001D0887 /* squirrelsOnATrampBackgroundV2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = squirrelsOnATrampBackgroundV2.jpg; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			children = (
 				4A4CBF361B4B87820076B6D2 /* redMarkGimp.png */,
 				4ABBEA6D1B4A4A28001D0887 /* redMarker.jpg */,
+				4A486D921BF422C100817AD1 /* brownMarkerTrans.png */,
 				4A17DE371B1D4F79001DDC81 /* red_arrow.png */,
 				4AC0CEF01B13F8A200F05FC9 /* trampolineLineV1.png */,
 				4AC0CEF11B13F8A200F05FC9 /* backgroundV1.png */,
@@ -263,6 +266,7 @@
 				4A4CBF371B4B87820076B6D2 /* redMarkGimp.png in Resources */,
 				4AAB459F1B2D347D00DF0E28 /* play_button1.png in Resources */,
 				4AC0CEF91B13F8A200F05FC9 /* trampolineV1.png in Resources */,
+				4A486D931BF422C100817AD1 /* brownMarkerTrans.png in Resources */,
 				4AC0CECE1B13F7D500F05FC9 /* Images.xcassets in Resources */,
 				4A17DE381B1D4F79001DDC81 /* red_arrow.png in Resources */,
 				4AC0CEF71B13F8A200F05FC9 /* backgroundV1.png in Resources */,

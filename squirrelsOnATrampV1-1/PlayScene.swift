@@ -158,12 +158,22 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
         // Create sprite
         // Determine where to spawn the monster along the Y axis
         
-        let actualY = random(size.height*2, max: size.height*3)
+        let spawnY = random(size.height*2, max: size.height*3)
+        let spawnX = random(10, max: size.width - 10)
+        let randomDir = random(1, max: 10)
         
-        // Position the monster slightly off-screen along the right edge,
         // and along a random position along the Y axis as calculated above
-        let villain_squirrel_type1 = VillainSquirrel.squirrel(CGPoint(x: size.width - size.width/5 , y: actualY))
+        let villain_squirrel_type1: VillainSquirrel = VillainSquirrel()
         villain_squirrel_type1.zPosition = 1
+        villain_squirrel_type1.position.x = spawnX
+        villain_squirrel_type1.position.y = spawnY
+        
+
+        if (randomDir < 5){
+            
+            villain_squirrel_type1.physicsBody?.velocity = CGVectorMake(75,0)
+        }
+
         // Add the monster to the scene
         addChild(villain_squirrel_type1)
         
@@ -227,6 +237,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
         if (!self.gameOver){
             score++
             processUserMotionForUpdate(currentTime)
+            processVillainNodes()
 
         }
         self.scoreLabel.text = "Score: " + String(score)
@@ -234,6 +245,26 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
         
     }
     
+    func processVillainNodes(){
+
+        self.enumerateChildNodesWithName("villainType1") {
+            node, stop in
+            let realnode = node as! VillainSquirrel
+            if (node.position.y > self.size.height){
+                realnode.brownMarker.position = CGPointMake(realnode.position.x, self.size.height - 40 )
+                realnode.brownMarker.zPosition = 1
+                if (!realnode.brownMarkerVisible){
+                    self.addChild(realnode.brownMarker)
+                    realnode.brownMarkerVisible = true
+                }
+            }
+            else if (realnode.brownMarkerVisible){
+                realnode.brownMarkerVisible = false
+                realnode.brownMarker.removeFromParent()
+
+            }
+        }
+    }
     
     func processUserMotionForUpdate(currentTime: CFTimeInterval) {
         

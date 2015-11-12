@@ -11,21 +11,32 @@ import UIKit
 import SpriteKit
 
 class VillainSquirrel: SKSpriteNode {
-    class func squirrel(location: CGPoint) -> VillainSquirrel {
-        let sprite = VillainSquirrel(imageNamed:"villainSquirrelV1.png")
+    var brownMarker = SKSpriteNode()
+    var brownMarkerVisible: Bool
+    
+    override init(texture: SKTexture!, color: SKColor, size: CGSize) {
         
-        sprite.name = "villainType1"
-        sprite.xScale = 0.4
-        sprite.yScale = 0.4
-        sprite.position = location
+
+        self.brownMarker = SKSpriteNode(imageNamed:"brownMarkerTrans.png")
+        self.brownMarker.zPosition = 1
+        self.brownMarker.xScale = 0.25
+        self.brownMarker.yScale = 0.25
+
+        self.brownMarkerVisible = false
         
-        sprite.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "villainSquirrelV1.png"), size: sprite.size)
-        if let physics = sprite.physicsBody {
+        let texture = SKTexture(imageNamed: "villainSquirrelV1.png")
+        super.init(texture: texture, color: SKColor.clearColor(), size: texture.size())
+        
+        self.name = "villainType1"
+        self.xScale = 0.2
+        self.yScale = 0.2
+        self.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "villainSquirrelV1.png"), size: self.size)
+        if let physics = self.physicsBody {
             
             physics.categoryBitMask = 0x1 << 1
             physics.contactTestBitMask = 0x1 << 0
             physics.collisionBitMask = 0x1 << 0
-
+            
             physics.affectedByGravity = true
             physics.allowsRotation = false
             physics.dynamic = true;
@@ -36,8 +47,20 @@ class VillainSquirrel: SKSpriteNode {
             
             physics.friction = 0
             physics.restitution = 1.05
-
         }
-        return sprite
+
+
+        
     }
-}
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    func activateMarker(){
+        self.brownMarkerVisible = true
+    }
+    
+    
+    }
