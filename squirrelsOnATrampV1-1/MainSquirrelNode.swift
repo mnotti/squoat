@@ -11,7 +11,16 @@ import UIKit
 import SpriteKit
 
 class MainSquirrel: SKSpriteNode {
+    var redMarker = SKSpriteNode()
+    var redMarkerVisible: Bool
+    
     override init(texture: SKTexture!, color: SKColor, size: CGSize) {
+        
+        self.redMarker = SKSpriteNode(imageNamed:"redMarkGimp.png")
+        self.redMarker.zPosition = 1
+        self.redMarker.xScale = 0.25
+        self.redMarker.yScale = 0.25
+        self.redMarkerVisible = false
         
         let texture = SKTexture(imageNamed: "squirrelV1.png")
         super.init(texture: texture, color: SKColor.clearColor(), size: texture.size())
@@ -19,6 +28,7 @@ class MainSquirrel: SKSpriteNode {
         self.name = "hero"
         self.xScale = 0.2
         self.yScale = 0.2
+        self.zPosition = 1
         self.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "squirrelV1.png"), size: self.size)
         if let physics = self.physicsBody {
             

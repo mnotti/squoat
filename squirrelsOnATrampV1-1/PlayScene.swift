@@ -21,10 +21,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
     
     var bgImage = SKSpriteNode(imageNamed: "squirrelsOnATrampBackgroundV2.jpg")
     var scoreLabel = SKLabelNode(fontNamed:"Chalkduster")
-    var redMarker = SKSpriteNode(imageNamed:"redMarkGimp.png")
     
     //my janky ass checks
-    var addedMarker = false
     var gameOver = false
     
 
@@ -32,7 +30,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
     override func didMoveToView(view: SKView) {
         
         score = 0
-        self.addedMarker = false
         
         let swipeUp = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
         swipeUp.direction = UISwipeGestureRecognizerDirection.Up
@@ -107,8 +104,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
         let main_squirrel: MainSquirrel = MainSquirrel()
         main_squirrel.position.x = size.width/2
         main_squirrel.position.y = size.height/1.6
-        main_squirrel.name = "hero"
-        main_squirrel.zPosition = 1
         self.addChild(main_squirrel)
         
         
@@ -201,48 +196,43 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
     
     
     override func update(currentTime: CFTimeInterval) {
-        if (childNodeWithName("hero") != nil){
-        let xPos = childNodeWithName("hero")?.position.x
-        let yPos = childNodeWithName("hero")?.position.y
+        if let node = childNodeWithName("hero"){
+            
+            let heroNode = node as! MainSquirrel
+            let xPos = heroNode.position.x
+            let yPos = heroNode.position.y
         
         
-        if(xPos > size.width
-            || xPos < 0
-            || yPos < 0){
-            self.gameOver = true
-            self.game_over()
-        }
-        else if(yPos > size.height){
-            print("ypos off screen")
-
-            if(!self.addedMarker){
-                self.redMarker.name = "redMarker"
-                self.redMarker.position = CGPointMake(xPos!, size.height)
-                self.redMarker.xScale = 0.5
-                self.redMarker.yScale = 0.5
-                self.redMarker.zPosition = 1
-                
-                self.addChild(self.redMarker)
-                self.addedMarker = true
+            if(xPos > size.width
+                || xPos < 0
+                || yPos < 0){
+                    self.gameOver = true
+                    self.game_over()
+            }
+            else if(yPos > size.height){
+                if(!heroNode.redMarkerVisible){
+                    heroNode.redMarkerVisible = true
+                    heroNode.redMarker.position = CGPointMake(xPos, self.size.height - 20)
+                    self.addChild(heroNode.redMarker)
+                }
+                else{
+                    heroNode.redMarker.position = CGPointMake(xPos, size.height - 20)
+                }
             }
             else{
-                self.redMarker.position = CGPointMake(xPos!, size.height)
+                if(heroNode.redMarkerVisible){
+                    heroNode.redMarker.removeFromParent()
+                    heroNode.redMarkerVisible = false
+                }
             }
-        }
-        else{
-            if(self.addedMarker){
-                self.redMarker.removeFromParent()
-                self.addedMarker = false
-            }
-        }
-            
-        if (!self.gameOver){
-            score++
-            processUserMotionForUpdate(currentTime)
-            processVillainNodes()
+                
+            if (!self.gameOver){
+                score++
+                processUserMotionForUpdate(currentTime)
+                processVillainNodes()
 
-        }
-        self.scoreLabel.text = "Score: " + String(score)
+            }
+            self.scoreLabel.text = "Score: " + String(score)
         }
         
     }
@@ -253,7 +243,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
             node, stop in
             let realnode = node as! VillainSquirrel
             if (node.position.y > self.size.height){
-                realnode.brownMarker.position = CGPointMake(realnode.position.x, self.size.height - 40 )
+                realnode.brownMarker.position = CGPointMake(realnode.position.x, self.size.height - 20 )
                 realnode.brownMarker.zPosition = 1
                 if (!realnode.brownMarkerVisible){
                     self.addChild(realnode.brownMarker)
