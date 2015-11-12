@@ -10,6 +10,7 @@ import Foundation
 import CoreMotion
 import UIKit
 import SpriteKit
+import AVFoundation
 
 
 class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
@@ -17,6 +18,14 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
     let motionManager: CMMotionManager = CMMotionManager()
     let heroCategory : UInt32 = 0x1 << 0
     let villainCategory : UInt32 = 0x1 << 1
+    let trampolineCategory: UInt32 = 0x1 << 2
+    
+    //sound bits
+    var boingHigh : AVAudioPlayer!
+    var boingMid : AVAudioPlayer!
+    var boingLow : AVAudioPlayer!
+    
+    
     var score = 0
     
     
@@ -40,6 +49,11 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
     override func didMoveToView(view: SKView) {
         
         score = 0
+        //setupAudio()
+        
+        self.boingLow?.play()
+        self.boingMid?.play()
+        self.boingHigh?.play()
         
         let swipeUp = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
         swipeUp.direction = UISwipeGestureRecognizerDirection.Up
@@ -159,7 +173,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
         let randomSpeed = random(50, max: 200)
         
         let villain_squirrel_type1: VillainSquirrel = VillainSquirrel()
-        villain_squirrel_type1.zPosition = 1
         villain_squirrel_type1.position.x = spawnX
         villain_squirrel_type1.position.y = spawnY
         
@@ -246,7 +259,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
             let realnode = node as! VillainSquirrel
             if (node.position.y > self.size.height){
                 realnode.brownMarker.position = CGPointMake(realnode.position.x, self.size.height - 20 )
-                realnode.brownMarker.zPosition = 1
                 if (!realnode.brownMarkerVisible){
                     self.addChild(realnode.brownMarker)
                     realnode.brownMarkerVisible = true
@@ -325,9 +337,24 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
             secondBody = contact.bodyA
         }
         
-        if firstBody.categoryBitMask == heroCategory && secondBody.categoryBitMask == villainCategory {
+        if (firstBody.categoryBitMask == heroCategory && secondBody.categoryBitMask == villainCategory){
             self.gameOver = true
             self.game_over()
+        }
+        else if(firstBody.categoryBitMask == trampolineCategory || secondBody.categoryBitMask == trampolineCategory){
+            /*let randSound = random(1, max: 4)
+            if(randSound >= 1 && randSound < 2){
+                print("should play low")
+                self.boingLow?.play()
+            }
+            else if(randSound >= 2 && randSound < 3){
+                print("should play mid")
+                self.boingMid?.play()
+            }
+            else if(randSound >= 3 && randSound <= 4){
+                print("should play high")
+                self.boingHigh?.play()
+            }*/
         }
     }
     
@@ -363,12 +390,51 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
     func saveScore(score: Int){
         
         //Check if score is higher than NSUserDefaults stored value and change NSUserDefaults stored value if it's true
-        if score > NSUserDefaults.standardUserDefaults().integerForKey("squirrelTrampHighScore1")
-        {
+        if score > NSUserDefaults.standardUserDefaults().integerForKey("squirrelTrampHighScore1"){
             NSUserDefaults.standardUserDefaults().setInteger(score, forKey: "squirrelTrampHighScore1")
             NSUserDefaults.standardUserDefaults().synchronize()
         }
     
     }
+    
+    func setupAudio(){
+        let audioFilePath1 = NSBundle.mainBundle().pathForResource("boingHigh", ofType: "m4a")
+        let audioFilePath2 = NSBundle.mainBundle().pathForResource("boingMid", ofType: "m4a")
+        let audioFilePath3 = NSBundle.mainBundle().pathForResource("boingLow", ofType: "m4a")
+        if audioFilePath1 != nil {
+            
+            let audioFileUrl = NSURL.fileURLWithPath(audioFilePath1!)
+            
+            self.boingHigh = try!AVAudioPlayer(contentsOfURL: audioFileUrl)
+            
+        }
+        else {
+            print("audio file 1 is not found")
+        }
+        if audioFilePath2 != nil {
+            
+            let audioFileUrl = NSURL.fileURLWithPath(audioFilePath2!)
+            
+            self.boingHigh = try!AVAudioPlayer(contentsOfURL: audioFileUrl)
+            
+        }
+        else {
+            print("audio file 2 is not found")
+        }
+        
+        if audioFilePath3 != nil {
+            
+            let audioFileUrl = NSURL.fileURLWithPath(audioFilePath3!)
+            
+            self.boingHigh = try!AVAudioPlayer(contentsOfURL: audioFileUrl)
+            
+        }
+        else {
+            print("audio file 3 is not found")
+        }
+
+    }
+    
+
     
 }

@@ -24,6 +24,10 @@ class TrampolineLineNode: SKSpriteNode {
         
         self.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "trampolineLineV1.png"), size: self.size)
         if let physics = self.physicsBody {
+            
+            physics.categoryBitMask = 0x1 << 2
+
+            
             physics.affectedByGravity = false
             physics.allowsRotation = false
             physics.dynamic = false

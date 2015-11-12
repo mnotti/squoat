@@ -17,7 +17,7 @@ class MainSquirrel: SKSpriteNode {
     override init(texture: SKTexture!, color: SKColor, size: CGSize) {
         
         self.redMarker = SKSpriteNode(imageNamed:"redMarkGimp.png")
-        self.redMarker.zPosition = 1
+        self.redMarker.zPosition = 2
         self.redMarker.xScale = 0.25
         self.redMarker.yScale = 0.25
         self.redMarkerVisible = false

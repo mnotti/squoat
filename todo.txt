@@ -1,7 +1,6 @@
 -maybe also a distance count for how far off?
 
--flying squirrels fly higher(closer to top of screen/off screen)
--->can also fly super low, skimming the trampoline
+-flying squirrels don't fly backwards?
 
 -memory warning issue:
 -> worry about it after i finish making the app work well

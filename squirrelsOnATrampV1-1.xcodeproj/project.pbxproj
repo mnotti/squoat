@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		4A17DE381B1D4F79001DDC81 /* red_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A17DE371B1D4F79001DDC81 /* red_arrow.png */; };
 		4A486D931BF422C100817AD1 /* brownMarkerTrans.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A486D921BF422C100817AD1 /* brownMarkerTrans.png */; settings = {ASSET_TAGS = (); }; };
+		4A486D991BF470B300817AD1 /* boingHigh.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 4A486D941BF462A900817AD1 /* boingHigh.m4a */; };
+		4A486D9A1BF4710500817AD1 /* boingLow.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 4A486D951BF462AA00817AD1 /* boingLow.m4a */; };
+		4A486D9B1BF4710500817AD1 /* boingMid.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 4A486D961BF462AA00817AD1 /* boingMid.m4a */; };
 		4A4CBF371B4B87820076B6D2 /* redMarkGimp.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A4CBF361B4B87820076B6D2 /* redMarkGimp.png */; };
 		4AAB459F1B2D347D00DF0E28 /* play_button1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AAB459E1B2D347D00DF0E28 /* play_button1.png */; };
 		4ABBEA6C1B49B89B001D0887 /* squirrelsOnATrampBackgroundV2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4ABBEA6B1B49B89B001D0887 /* squirrelsOnATrampBackgroundV2.jpg */; };
@@ -47,6 +50,9 @@
 /* Begin PBXFileReference section */
 		4A17DE371B1D4F79001DDC81 /* red_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_arrow.png; sourceTree = "<group>"; };
 		4A486D921BF422C100817AD1 /* brownMarkerTrans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brownMarkerTrans.png; sourceTree = "<group>"; };
+		4A486D941BF462A900817AD1 /* boingHigh.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = boingHigh.m4a; sourceTree = "<group>"; };
+		4A486D951BF462AA00817AD1 /* boingLow.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = boingLow.m4a; sourceTree = "<group>"; };
+		4A486D961BF462AA00817AD1 /* boingMid.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = boingMid.m4a; sourceTree = "<group>"; };
 		4A4CBF361B4B87820076B6D2 /* redMarkGimp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redMarkGimp.png; sourceTree = "<group>"; };
 		4AAB459E1B2D347D00DF0E28 /* play_button1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_button1.png; sourceTree = "<group>"; };
 		4ABBEA6B1B49B89B001D0887 /* squirrelsOnATrampBackgroundV2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = squirrelsOnATrampBackgroundV2.jpg; sourceTree = "<group>"; };
@@ -113,6 +119,16 @@
 			name = images;
 			sourceTree = "<group>";
 		};
+		4A486D981BF462C500817AD1 /* audio */ = {
+			isa = PBXGroup;
+			children = (
+				4A486D941BF462A900817AD1 /* boingHigh.m4a */,
+				4A486D951BF462AA00817AD1 /* boingLow.m4a */,
+				4A486D961BF462AA00817AD1 /* boingMid.m4a */,
+			);
+			name = audio;
+			sourceTree = "<group>";
+		};
 		4AC0CEB41B13F7D500F05FC9 = {
 			isa = PBXGroup;
 			children = (
@@ -146,6 +162,7 @@
 				4AC0CECA1B13F7D500F05FC9 /* Main.storyboard */,
 				4AC0CECD1B13F7D500F05FC9 /* Images.xcassets */,
 				4AC0CECF1B13F7D500F05FC9 /* LaunchScreen.xib */,
+				4A486D981BF462C500817AD1 /* audio */,
 				4A486D8D1BF30DBD00817AD1 /* images */,
 				4AC0CEC01B13F7D500F05FC9 /* Supporting Files */,
 			);
@@ -258,6 +275,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A486D991BF470B300817AD1 /* boingHigh.m4a in Resources */,
 				4ABBEA6C1B49B89B001D0887 /* squirrelsOnATrampBackgroundV2.jpg in Resources */,
 				4AC0CED11B13F7D500F05FC9 /* LaunchScreen.xib in Resources */,
 				4AC0CEF61B13F8A200F05FC9 /* trampolineLineV1.png in Resources */,
@@ -272,6 +290,8 @@
 				4AC0CEF71B13F8A200F05FC9 /* backgroundV1.png in Resources */,
 				4AC0CECC1B13F7D500F05FC9 /* Main.storyboard in Resources */,
 				4AC0CEFB1B13F8A200F05FC9 /* villainSquirrelV1.png in Resources */,
+				4A486D9A1BF4710500817AD1 /* boingLow.m4a in Resources */,
+				4A486D9B1BF4710500817AD1 /* boingMid.m4a in Resources */,
 				4AC0CEFA1B13F8A200F05FC9 /* squirrelV1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
