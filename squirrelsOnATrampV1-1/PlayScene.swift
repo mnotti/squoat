@@ -32,6 +32,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
     override func didMoveToView(view: SKView) {
         
         score = 0
+        self.addedMarker = false
         
         let swipeUp = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
         swipeUp.direction = UISwipeGestureRecognizerDirection.Up
@@ -54,19 +55,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
             //to delay
         })
 
-        if (self.motionManager.accelerometerAvailable == true) {
-            self.motionManager.startAccelerometerUpdatesToQueue(NSOperationQueue()) {
-                (data, error) in
-                
-                if (data!.acceleration.y != 0 && !self.gameOver) {
-                    //self.handle_tilt(CGFloat(data!.acceleration.y))
-                        self.childNodeWithName("hero")?.physicsBody?.applyForce(CGVectorMake(CGFloat((data?.acceleration.y)!) * 50, 0))
-                }
-                    
-                
-            }
-            
-        }
+        motionManager.startAccelerometerUpdates()
         
         //  spawns flying squirrels
                 /*self.runAction(SKAction.repeatActionForever(
@@ -212,18 +201,24 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
             self.game_over()
         }
         else if(yPos > size.height){
+            print("ypos off screen")
 
-            self.redMarker.name = "redMarker"
             if(!self.addedMarker){
+                self.redMarker.name = "redMarker"
                 self.redMarker.position = CGPointMake(xPos!, size.height)
                 self.redMarker.xScale = 0.5
                 self.redMarker.yScale = 0.5
+                self.redMarker.zPosition = 1
+                
                 self.addChild(self.redMarker)
                 self.addedMarker = true
             }
+            else{
+                self.redMarker.position = CGPointMake(xPos!, size.height)
+            }
         }
         else{
-            if(self.addedMarker == true){
+            if(self.addedMarker){
                 self.redMarker.removeFromParent()
                 self.addedMarker = false
             }
@@ -231,6 +226,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
             
         if (!self.gameOver){
             score++
+            processUserMotionForUpdate(currentTime)
+
         }
         self.scoreLabel.text = "Score: " + String(score)
         }
@@ -238,12 +235,19 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
     }
     
     
-    /*func handle_tilt(acceleration_data: CGFloat){
+    func processUserMotionForUpdate(currentTime: CFTimeInterval) {
         
-        if (!gameOver){
-        childNodeWithName("hero")?.physicsBody?.applyForce(CGVectorMake(acceleration_data * 50, 0))
+        let hero = self.childNodeWithName("hero")
+
+        if let data = motionManager.accelerometerData {
+            
+            if (fabs(data.acceleration.y) > 0.2) {
+                 hero?.physicsBody?.applyForce(CGVectorMake(CGFloat(data.acceleration.y) * 100, 0))
+            }
         }
-    }*/
+    }
+    
+
     
     func didBeginContact(contact: SKPhysicsContact) {
         var firstBody: SKPhysicsBody

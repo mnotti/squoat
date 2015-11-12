@@ -8,4 +8,8 @@
 -flying squirrels fly higher(closer to top of screen/off screen)
 -->can also fly super low, skimming the trampoline
 
-
+-big glitch issue:
+--collection mutated while being enumerated:
+---when squirrel starts to go off screen and red marker appears
+---right when a new round begins (after clicking the play button)
+---right after dying 
