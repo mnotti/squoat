@@ -11,30 +11,31 @@ import UIKit
 import SpriteKit
 
 class MainSquirrel: SKSpriteNode {
-    
-    class func squirrel(location: CGPoint) -> MainSquirrel {
-        let sprite = MainSquirrel(imageNamed:"squirrelV1.png")
+    override init(texture: SKTexture!, color: SKColor, size: CGSize) {
         
-        sprite.name = "squirrely"
-        sprite.xScale = 0.4
-        sprite.yScale = 0.4
-        sprite.position = location
+        let texture = SKTexture(imageNamed: "squirrelV1.png")
+        super.init(texture: texture, color: SKColor.clearColor(), size: texture.size())
         
-        sprite.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "squirrelV1.png"), size: sprite.size)
-        if let physics = sprite.physicsBody {
+        self.name = "hero"
+        self.xScale = 0.2
+        self.yScale = 0.2
+        self.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "squirrelV1.png"), size: self.size)
+        if let physics = self.physicsBody {
             
             physics.categoryBitMask = 0x1 << 0
             physics.contactTestBitMask = 0x1 << 1
-
-
+            
+            
             physics.affectedByGravity = true
             physics.allowsRotation = false
             physics.dynamic = true;
             
             physics.friction = 0
             physics.restitution = 1.05
-     
         }
-        return sprite
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }

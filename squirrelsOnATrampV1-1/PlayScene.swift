@@ -104,7 +104,9 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
         
         
         
-        let main_squirrel = MainSquirrel.squirrel(CGPoint(x: size.width/2, y: size.height/1.6))
+        let main_squirrel: MainSquirrel = MainSquirrel()
+        main_squirrel.position.x = size.width/2
+        main_squirrel.position.y = size.height/1.6
         main_squirrel.name = "hero"
         main_squirrel.zPosition = 1
         self.addChild(main_squirrel)
