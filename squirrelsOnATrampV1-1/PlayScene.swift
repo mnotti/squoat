@@ -19,11 +19,18 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
     let villainCategory : UInt32 = 0x1 << 1
     var score = 0
     
+    
     var bgImage = SKSpriteNode(imageNamed: "squirrelsOnATrampBackgroundV2.jpg")
     var scoreLabel = SKLabelNode(fontNamed:"Chalkduster")
     
     //my janky ass checks
     var gameOver = false
+    // Time of last update(currentTime:) call
+    var lastUpdateTime = NSTimeInterval(0)
+    // Seconds elapsed since last action
+    var timeSinceLastAction = NSTimeInterval(0)
+    // Seconds before performing next action. Choose a default value
+    var timeUntilNextAction = NSTimeInterval(4)
     
 
     
@@ -62,16 +69,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
                         ])
                     ), withKey: "spawn_flying_squirrels")*/
         
-      //  spawns jumping squirrels
-                self.runAction(SKAction.repeatActionForever(
-                    SKAction.sequence([
-                        SKAction.runBlock(addVillainSquirrelJumping),
-                        SKAction.waitForDuration(7)
-                        ])
-                    ), withKey: "spawn_villain_squirrels")
-//
-        
-        
+
   }
         
     
@@ -131,47 +129,41 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
     }
     
     func addVillainSquirrelFlying() {
-        let actualY = random(size.height/2, max: size.height/1.3)
+        let spawnY = random(size.height/2, max: size.height/1.3)
         
-        // Position the monster slightly off-screen along the right edge,
-        // and along a random position along the Y axis as calculated above
-        let villain_squirrel_flying = VillainSquirrelFlying.squirrel(CGPoint(x: size.width + 200 , y: actualY))
-        villain_squirrel_flying.zPosition = 1
+        let villain_squirrel_flying = VillainSquirrelFlying.squirrel(CGPoint(x: size.width + 200 , y: spawnY))
         
-        // Add the monster to the scene
         addChild(villain_squirrel_flying)
         
-        // Determine speed of the monster
+        // Determine speed of the squirrel
         let actualDuration = random(CGFloat(7), max: CGFloat(11))
         
         // Create the actions
-        let actionMove = SKAction.moveTo(CGPoint(x: -villain_squirrel_flying.size.width/2,y: actualY), duration: NSTimeInterval(actualDuration))
+        let actionMove = SKAction.moveTo(CGPoint(x: -villain_squirrel_flying.size.width/2,y: spawnY), duration: NSTimeInterval(actualDuration))
         let actionMoveDone = SKAction.removeFromParent()
         villain_squirrel_flying.runAction(SKAction.sequence([actionMove, actionMoveDone]))
         
     }
     func addVillainSquirrelJumping() {
         
-        // Create sprite
-        // Determine where to spawn the monster along the Y axis
-        
         let spawnY = random(size.height*2, max: size.height*3)
         let spawnX = random(10, max: size.width - 10)
         let randomDir = random(1, max: 10)
+        let randomSpeed = random(50, max: 200)
         
-        // and along a random position along the Y axis as calculated above
         let villain_squirrel_type1: VillainSquirrel = VillainSquirrel()
         villain_squirrel_type1.zPosition = 1
         villain_squirrel_type1.position.x = spawnX
         villain_squirrel_type1.position.y = spawnY
         
-
+        
         if (randomDir < 5){
-            
-            villain_squirrel_type1.physicsBody?.velocity = CGVectorMake(75,0)
+            villain_squirrel_type1.physicsBody?.velocity = CGVectorMake(randomSpeed,0)
+        }
+        else{
+            villain_squirrel_type1.physicsBody?.velocity = CGVectorMake(-randomSpeed,0)
         }
 
-        // Add the monster to the scene
         addChild(villain_squirrel_type1)
         
 
@@ -197,6 +189,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
     
     override func update(currentTime: CFTimeInterval) {
         if let node = childNodeWithName("hero"){
+            
             
             let heroNode = node as! MainSquirrel
             let xPos = heroNode.position.x
@@ -230,6 +223,22 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
                 score++
                 processUserMotionForUpdate(currentTime)
                 processVillainNodes()
+                
+                //when to perform next action
+                //TODO: make intervals get shorter as the game goes on
+                let delta = currentTime - lastUpdateTime
+                lastUpdateTime = currentTime
+                
+                timeSinceLastAction += delta
+                
+                if timeSinceLastAction >= timeUntilNextAction {
+                    addVillainSquirrelJumping()
+                    // reset
+                    timeSinceLastAction = NSTimeInterval(0)
+                    // Randomize seconds until next action
+                    timeUntilNextAction = CDouble(random(2, max: 5))
+                    
+                }
 
             }
             self.scoreLabel.text = "Score: " + String(score)
@@ -288,7 +297,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
             secondBody = contact.bodyA
         }
         
-        //contact between ball and cup
         if firstBody.categoryBitMask == heroCategory && secondBody.categoryBitMask == villainCategory {
             self.gameOver = true
             self.game_over()

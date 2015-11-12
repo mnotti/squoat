@@ -18,6 +18,7 @@ class VillainSquirrelFlying: SKSpriteNode {
         sprite.xScale = 0.4
         sprite.yScale = 0.4
         sprite.position = location
+        sprite.zPosition = 1
         
         sprite.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "villainSquirrelFlyingV1.png"), size: sprite.size)
         if let physics = sprite.physicsBody {

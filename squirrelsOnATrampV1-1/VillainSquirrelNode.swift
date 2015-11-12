@@ -41,10 +41,6 @@ class VillainSquirrel: SKSpriteNode {
             physics.allowsRotation = false
             physics.dynamic = true;
             
-            physics.velocity = CGVectorMake(-75,0)
-            
-            //physics.mass = 100
-            
             physics.friction = 0
             physics.restitution = 1.05
         }
