@@ -28,7 +28,7 @@ class MainSquirrel: SKSpriteNode {
         self.name = "hero"
         self.xScale = 0.2
         self.yScale = 0.2
-        self.zPosition = 1
+        self.zPosition = 2
         self.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "squirrelV1.png"), size: self.size)
         if let physics = self.physicsBody {
             

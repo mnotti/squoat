@@ -11,24 +11,21 @@ import UIKit
 import SpriteKit
 
 class TrampolineNode: SKSpriteNode {
-    class func trampolineMake(location: CGPoint) -> TrampolineNode {
-        let sprite = TrampolineNode(imageNamed:"trampolineV1.png")
+    
+    override init(texture: SKTexture!, color: SKColor, size: CGSize) {
+    
+        let texture = SKTexture(imageNamed: "trampolineV1.png")
+        super.init(texture: texture, color: SKColor.clearColor(), size: texture.size())
         
-        sprite.name = "trampoliney"
-        sprite.xScale = 1.75
-        sprite.yScale = 0.75
-        sprite.position = location
+        self.name = "trampoliney"
+        self.xScale = 1.75
+        self.yScale = 0.75
+        self.zPosition = 1
         
-//        sprite.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "trampolineV1.png"), size: sprite.size)
-//        if let physics = sprite.physicsBody {
-//            physics.affectedByGravity = false
-//            physics.allowsRotation = false
-//            physics.dynamic = false
-//            physics.friction = 0
-//            physics.restitution = 1.05
-        
-           // physics.linearDamping = 0.75
-            //physics.angularDamping = 0.75
-        return sprite
     }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
 }

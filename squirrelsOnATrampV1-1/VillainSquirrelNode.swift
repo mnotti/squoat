@@ -54,9 +54,4 @@ class VillainSquirrel: SKSpriteNode {
     }
     
     
-    func activateMarker(){
-        self.brownMarkerVisible = true
-    }
-    
-    
     }

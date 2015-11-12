@@ -28,9 +28,12 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
     // Time of last update(currentTime:) call
     var lastUpdateTime = NSTimeInterval(0)
     // Seconds elapsed since last action
-    var timeSinceLastAction = NSTimeInterval(0)
+    var timeSinceLastJumpingSquirrel = NSTimeInterval(0)
+    var timeSinceLastFlyingSquirrel = NSTimeInterval(0)
+
     // Seconds before performing next action. Choose a default value
-    var timeUntilNextAction = NSTimeInterval(4)
+    var timeUntilNextJumpingSquirrel = NSTimeInterval(4)
+    var timeUntilNextFlyingSquirrel = NSTimeInterval(5)
     
 
     
@@ -60,14 +63,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
         })
 
         motionManager.startAccelerometerUpdates()
-        
-        //  spawns flying squirrels
-                /*self.runAction(SKAction.repeatActionForever(
-                    SKAction.sequence([
-                        SKAction.runBlock(addVillainSquirrelFlying),
-                        SKAction.waitForDuration(13)
-                        ])
-                    ), withKey: "spawn_flying_squirrels")*/
         
 
   }
@@ -106,14 +101,14 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
         
         
         
-        let trampoline = TrampolineNode.trampolineMake(CGPoint(x: size.width/2, y: size.height/6))
+        let trampoline: TrampolineNode = TrampolineNode()
+        trampoline.position = CGPoint(x: size.width/2, y: size.height/6)
         trampoline.size.width = size.width - 0.1*size.width
-        trampoline.zPosition = 1
         self.addChild(trampoline)
         
-        let trampoline_line = TrampolineLineNode.trampolineLineMake(CGPoint(x: size.width/2, y: size.height/6))
+        let trampoline_line: TrampolineLineNode = TrampolineLineNode()
+        trampoline_line.position = CGPoint(x: size.width/2, y: size.height/6)
         trampoline_line.size.width = size.width - 0.1*size.width
-        trampoline_line.zPosition = 1
         self.addChild(trampoline_line)
         
         backgroundColor = SKColor.blueColor()
@@ -129,18 +124,30 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
     }
     
     func addVillainSquirrelFlying() {
-        let spawnY = random(size.height/2, max: size.height/1.3)
-        
-        let villain_squirrel_flying = VillainSquirrelFlying.squirrel(CGPoint(x: size.width + 200 , y: spawnY))
-        
-        addChild(villain_squirrel_flying)
-        
+        let spawnY = random(size.height/2, max: size.height - 20)
+        let spawnXRand = random(0, max: 1)
+
+        var actionMove: SKAction
         // Determine speed of the squirrel
         let actualDuration = random(CGFloat(7), max: CGFloat(11))
-        
-        // Create the actions
-        let actionMove = SKAction.moveTo(CGPoint(x: -villain_squirrel_flying.size.width/2,y: spawnY), duration: NSTimeInterval(actualDuration))
         let actionMoveDone = SKAction.removeFromParent()
+
+        var spawnX: CGFloat
+        if (spawnXRand < 0.5){
+            spawnX = -100
+            actionMove = SKAction.moveTo(CGPoint(x: self.size.width + 100,y: spawnY), duration: NSTimeInterval(actualDuration))
+
+        }
+        else{
+            spawnX = size.width + 100
+            actionMove = SKAction.moveTo(CGPoint(x: -100,y: spawnY), duration: NSTimeInterval(actualDuration))
+        }
+        
+        let villain_squirrel_flying: VillainSquirrelFlying = VillainSquirrelFlying()
+        villain_squirrel_flying.position.x = spawnX
+        villain_squirrel_flying.position.y = spawnY
+        
+        addChild(villain_squirrel_flying)
         villain_squirrel_flying.runAction(SKAction.sequence([actionMove, actionMoveDone]))
         
     }
@@ -223,23 +230,9 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
                 score++
                 processUserMotionForUpdate(currentTime)
                 processVillainNodes()
+                handleVillainSpawning(currentTime)
                 
-                //when to perform next action
-                //TODO: make intervals get shorter as the game goes on
-                let delta = currentTime - lastUpdateTime
-                lastUpdateTime = currentTime
                 
-                timeSinceLastAction += delta
-                
-                if timeSinceLastAction >= timeUntilNextAction {
-                    addVillainSquirrelJumping()
-                    // reset
-                    timeSinceLastAction = NSTimeInterval(0)
-                    // Randomize seconds until next action
-                    timeUntilNextAction = CDouble(random(2, max: 5))
-                    
-                }
-
             }
             self.scoreLabel.text = "Score: " + String(score)
         }
@@ -264,7 +257,42 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
                 realnode.brownMarker.removeFromParent()
 
             }
+            if (realnode.position.x > self.size.width + 10 || realnode.position.x < -10){
+                if (realnode.brownMarkerVisible){
+                    realnode.brownMarkerVisible = false
+                    realnode.brownMarker.removeFromParent()
+                }
+                realnode.removeFromParent()
+            }
         }
+    }
+    
+    func handleVillainSpawning(currentTime: CFTimeInterval){
+        //when to perform next action
+        //TODO: make intervals get shorter as the game goes on
+        let delta = currentTime - lastUpdateTime
+        lastUpdateTime = currentTime
+        
+        timeSinceLastJumpingSquirrel += delta
+        timeSinceLastFlyingSquirrel += delta
+        
+        if timeSinceLastJumpingSquirrel >= timeUntilNextJumpingSquirrel {
+            addVillainSquirrelJumping()
+            // reset
+            timeSinceLastJumpingSquirrel = NSTimeInterval(0)
+            // Randomize seconds until next action
+            timeUntilNextJumpingSquirrel = CDouble(random(1, max: 4))
+            
+        }
+        if timeSinceLastFlyingSquirrel >= timeUntilNextFlyingSquirrel {
+            addVillainSquirrelFlying()
+            // reset
+            timeSinceLastFlyingSquirrel = NSTimeInterval(0)
+            // Randomize seconds until next action
+            timeUntilNextFlyingSquirrel = CDouble(random(4, max: 10))
+            
+        }
+
     }
     
     func processUserMotionForUpdate(currentTime: CFTimeInterval) {
@@ -273,7 +301,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
 
         if let data = motionManager.accelerometerData {
             
-            if (fabs(data.acceleration.y) > 0.2) {
+            if (fabs(data.acceleration.y) > 0.05) {
                  hero?.physicsBody?.applyForce(CGVectorMake(CGFloat(data.acceleration.y) * 100, 0))
             }
         }

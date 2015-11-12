@@ -1,15 +1,19 @@
--markers for villain squirrels when they're off the top of the screen
---> maybe also a distance count for how far off?
-
--check marker's functionality for main squirrel...does it move with the squirrel off screen
-
--falling squirrels fall at random places in random directions
+-maybe also a distance count for how far off?
 
 -flying squirrels fly higher(closer to top of screen/off screen)
 -->can also fly super low, skimming the trampoline
 
--big glitch issue:
---collection mutated while being enumerated:
----when squirrel starts to go off screen and red marker appears
----right when a new round begins (after clicking the play button)
----right after dying 
+-memory warning issue:
+-> worry about it after i finish making the app work well
+-> not causing issues right now
+-> http://stackoverflow.com/questions/28999266/how-to-debug-memory-warnings-in-swift
+^potential ways to address memory issue
+
+-make menu scene interactive
+
+-handle when people close the app?
+
+-new icon with smaller squirrel
+->create with all sizes
+
+

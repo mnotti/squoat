@@ -11,33 +11,40 @@ import UIKit
 import SpriteKit
 
 class VillainSquirrelFlying: SKSpriteNode {
-    class func squirrel(location: CGPoint) -> VillainSquirrelFlying {
-        let sprite = VillainSquirrelFlying(imageNamed:"villainSquirrelFlyingV1.png")
+
+    
+    override init(texture: SKTexture!, color: SKColor, size: CGSize) {
+    
         
-        sprite.name = "villainFlying"
-        sprite.xScale = 0.4
-        sprite.yScale = 0.4
-        sprite.position = location
-        sprite.zPosition = 1
+        let texture = SKTexture(imageNamed: "villainSquirrelFlyingV1.png")
+        super.init(texture: texture, color: SKColor.clearColor(), size: texture.size())
         
-        sprite.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "villainSquirrelFlyingV1.png"), size: sprite.size)
-        if let physics = sprite.physicsBody {
+        self.name = "villainFlying"
+        self.xScale = 0.2
+        self.yScale = 0.2
+        self.zPosition = 1
+        self.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "villainSquirrelFlyingV1.png"), size: self.size)
+        if let physics = self.physicsBody {
             
             physics.categoryBitMask = 0x1 << 1
             physics.contactTestBitMask = 0x1 << 0
             physics.collisionBitMask = 0x1 << 0
-
+            
             
             physics.affectedByGravity = false
             physics.allowsRotation = false
             physics.dynamic = true;
             
-            //physics.mass = 100
-            
             physics.friction = 0
             physics.restitution = 1.05
             
         }
-        return sprite
+        
+        
     }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
 }
