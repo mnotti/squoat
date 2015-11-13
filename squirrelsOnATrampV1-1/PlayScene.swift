@@ -14,27 +14,42 @@ import AVFoundation
 
 
 class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
-
+    
+    ////////////////////////////////////////////////
+    //bitmask manipulation declaration and globals//
+    ////////////////////////////////////////////////
+    
     let motionManager: CMMotionManager = CMMotionManager()
     let heroCategory : UInt32 = 0x1 << 0
     let villainCategory : UInt32 = 0x1 << 1
     let trampolineCategory: UInt32 = 0x1 << 2
     
-    //sound bits
+    //////////////////////
+    //audio bits globals//
+    //////////////////////
+    
     var boingMid : AVAudioPlayer!
     var boingLow : AVAudioPlayer!
     var bleh: AVAudioPlayer!
-    //sound janky check
     
+    ////////////////////////
+    //general game globals//
+    ////////////////////////
     
     var score = 0
+    var gameOver = false
     
+    /////////////////
+    //image globals//
+    /////////////////
     
     var bgImage = SKSpriteNode(imageNamed: "squirrelsOnATrampBackgroundV2.jpg")
     var scoreLabel = SKLabelNode(fontNamed:"Chalkduster")
     
-    //my janky ass checks
-    var gameOver = false
+    ////////////////////////////////////
+    //time management initialization////
+    ////////////////////////////////////
+    
     // Time of last update(currentTime:) call
     var lastUpdateTime = NSTimeInterval(0)
     // Seconds elapsed since last action
@@ -125,23 +140,13 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
         backgroundColor = SKColor.blueColor()
     }
     
-    
-    func random() -> CGFloat {
-        return CGFloat(Float(arc4random()) / 0xFFFFFFFF)
-    }
-    
-    func random(min: CGFloat, max: CGFloat) -> CGFloat {
-        return random() * (max - min) + min
-    }
-    
     func addVillainSquirrelFlying() {
         
         let villain_squirrel_flying: VillainSquirrelFlying = VillainSquirrelFlying()
-
-        let trampolineBuzz = random(1, max: 5)
-        print("tramp buzz:")
-        print(trampolineBuzz)
         let spawnY: CGFloat
+        
+        //1 in 4 chance, the flying squirrel will fly low to the trampoline
+        let trampolineBuzz = random(1, max: 5)
         if (trampolineBuzz < 2){
             spawnY = size.height/3
         }
@@ -151,6 +156,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
         let spawnXRand = random(0, max: 1)
 
         var actionMove: SKAction
+        
         // Determine speed of the squirrel
         let actualDuration = random(CGFloat(7), max: CGFloat(11))
         let actionMoveDone = SKAction.removeFromParent()
@@ -186,7 +192,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
         villain_squirrel_type1.position.x = spawnX
         villain_squirrel_type1.position.y = spawnY
         
-        
+        //50-50 chance of falling to the left-right
         if (randomDir < 5){
             villain_squirrel_type1.physicsBody?.velocity = CGVectorMake(randomSpeed,0)
         }
@@ -195,9 +201,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
         }
 
         addChild(villain_squirrel_type1)
-        
-
-        
     }
     
     
@@ -209,7 +212,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
             case UISwipeGestureRecognizerDirection.Up:
                 childNodeWithName("hero")?.physicsBody?.applyForce(CGVectorMake(0, 500))
             case UISwipeGestureRecognizerDirection.Down:
-                childNodeWithName("hero")?.physicsBody?.velocity = CGVectorMake(0,0)
+                childNodeWithName("hero")?.physicsBody?.velocity = CGVectorMake(0,-25)
             default:
                 break
             }
@@ -220,11 +223,9 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
     override func update(currentTime: CFTimeInterval) {
         if let node = childNodeWithName("hero"){
             
-            
             let heroNode = node as! MainSquirrel
             let xPos = heroNode.position.x
             let yPos = heroNode.position.y
-        
         
             if(xPos > size.width
                 || xPos < 0
@@ -256,14 +257,14 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
                 processUserMotionForUpdate(currentTime)
                 processVillainNodes()
                 handleVillainSpawning(currentTime)
-                
-                
             }
             self.scoreLabel.text = "Score: " + String(score)
         }
         
     }
     
+    //handles the deletion of villain squirrels and also the adding and removing of exclamation marks and
+    //brown markers
     func processVillainNodes(){
 
         self.enumerateChildNodesWithName("villainType1") {
@@ -336,7 +337,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
 
             }
             else{
-                print("no direction assigned to flying squirrel")
+                print("error: no direction assigned to flying squirrel")
             }
         }
         
@@ -432,22 +433,20 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
             }
         }
         
+        
         let seconds = 1.0
         let delay = seconds * Double(NSEC_PER_SEC)  // nanoseconds per seconds
         let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-        
+        //delays 1 second before exiting playScene
         dispatch_after(dispatchTime, dispatch_get_main_queue(), {
             let scene = GameScene(size: self.size)
             scene.scaleMode = .AspectFill
             self.view?.presentScene(scene)
         })
         
-        
-        //saves the score or doesn't (if it doesn't make the high score
+        //saves the score or doesn't (if it doesn't make the high score)
         saveScore(score)
-
-        
-        }
+    }
     
     func saveScore(score: Int){
         
@@ -460,14 +459,9 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
     }
     
     func setupAudio(){
-        let audioFilePath1 = NSBundle.mainBundle().pathForResource("boingMid", ofType: "m4a")
-        let audioFilePath2 = NSBundle.mainBundle().pathForResource("boingLow", ofType: "m4a")
-        let audioFilePath3 = NSBundle.mainBundle().pathForResource("bleh", ofType: "m4a")
-
-        if audioFilePath1 != nil {
-            
-            let audioFileUrl = NSURL.fileURLWithPath(audioFilePath1!)
-            
+        
+        if let audioFilePath1 = NSBundle.mainBundle().pathForResource("boingMid", ofType: "m4a") {
+            let audioFileUrl = NSURL.fileURLWithPath(audioFilePath1)
             self.boingMid = try!AVAudioPlayer(contentsOfURL: audioFileUrl)
             
         }
@@ -475,29 +469,31 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
             print("audio file 1 is not found")
         }
         
-        if audioFilePath2 != nil {
-            
-            let audioFileUrl = NSURL.fileURLWithPath(audioFilePath2!)
-            
+        if  let audioFilePath2 = NSBundle.mainBundle().pathForResource("boingLow", ofType: "m4a") {
+            let audioFileUrl = NSURL.fileURLWithPath(audioFilePath2)
             self.boingLow = try!AVAudioPlayer(contentsOfURL: audioFileUrl)
-            
         }
         else {
             print("audio file 2 is not found")
         }
         
-        if audioFilePath3 != nil {
-            
-            let audioFileUrl = NSURL.fileURLWithPath(audioFilePath3!)
-            
+        if let audioFilePath3 = NSBundle.mainBundle().pathForResource("bleh", ofType: "m4a"){
+            let audioFileUrl = NSURL.fileURLWithPath(audioFilePath3)
             self.bleh = try!AVAudioPlayer(contentsOfURL: audioFileUrl)
-            
         }
         else {
             print("audio file 3 is not found")
         }
 
 
+    }
+    
+    func random() -> CGFloat {
+        return CGFloat(Float(arc4random()) / 0xFFFFFFFF)
+    }
+    
+    func random(min: CGFloat, max: CGFloat) -> CGFloat {
+        return random() * (max - min) + min
     }
     
 

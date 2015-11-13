@@ -12,7 +12,7 @@
 
 -handle when people close the app?
 
--new icon with smaller squirrel
-->create with all sizes
+-single sound for one bounce
 
+-collision bit mask for flying squirrel doesn't exist
 
