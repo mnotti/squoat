@@ -21,9 +21,9 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
     let trampolineCategory: UInt32 = 0x1 << 2
     
     //sound bits
-    var boingHigh : AVAudioPlayer!
     var boingMid : AVAudioPlayer!
     var boingLow : AVAudioPlayer!
+    //sound janky check
     
     
     var score = 0
@@ -49,11 +49,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
     override func didMoveToView(view: SKView) {
         
         score = 0
-        //setupAudio()
-        
-        self.boingLow?.play()
-        self.boingMid?.play()
-        self.boingHigh?.play()
+        setupAudio()
         
         let swipeUp = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
         swipeUp.direction = UISwipeGestureRecognizerDirection.Up
@@ -341,20 +337,16 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
             self.gameOver = true
             self.game_over()
         }
-        else if(firstBody.categoryBitMask == trampolineCategory || secondBody.categoryBitMask == trampolineCategory){
-            /*let randSound = random(1, max: 4)
+        else if(firstBody.categoryBitMask == villainCategory || secondBody.categoryBitMask == trampolineCategory){
+            let randSound = random(1, max: 3)
             if(randSound >= 1 && randSound < 2){
                 print("should play low")
                 self.boingLow?.play()
             }
-            else if(randSound >= 2 && randSound < 3){
+            else{
                 print("should play mid")
                 self.boingMid?.play()
             }
-            else if(randSound >= 3 && randSound <= 4){
-                print("should play high")
-                self.boingHigh?.play()
-            }*/
         }
     }
     
@@ -398,39 +390,28 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
     }
     
     func setupAudio(){
-        let audioFilePath1 = NSBundle.mainBundle().pathForResource("boingHigh", ofType: "m4a")
-        let audioFilePath2 = NSBundle.mainBundle().pathForResource("boingMid", ofType: "m4a")
-        let audioFilePath3 = NSBundle.mainBundle().pathForResource("boingLow", ofType: "m4a")
+        let audioFilePath1 = NSBundle.mainBundle().pathForResource("boingMid", ofType: "m4a")
+        let audioFilePath2 = NSBundle.mainBundle().pathForResource("boingLow", ofType: "m4a")
         if audioFilePath1 != nil {
             
             let audioFileUrl = NSURL.fileURLWithPath(audioFilePath1!)
             
-            self.boingHigh = try!AVAudioPlayer(contentsOfURL: audioFileUrl)
+            self.boingMid = try!AVAudioPlayer(contentsOfURL: audioFileUrl)
             
         }
         else {
             print("audio file 1 is not found")
         }
+        
         if audioFilePath2 != nil {
             
             let audioFileUrl = NSURL.fileURLWithPath(audioFilePath2!)
             
-            self.boingHigh = try!AVAudioPlayer(contentsOfURL: audioFileUrl)
+            self.boingLow = try!AVAudioPlayer(contentsOfURL: audioFileUrl)
             
         }
         else {
             print("audio file 2 is not found")
-        }
-        
-        if audioFilePath3 != nil {
-            
-            let audioFileUrl = NSURL.fileURLWithPath(audioFilePath3!)
-            
-            self.boingHigh = try!AVAudioPlayer(contentsOfURL: audioFileUrl)
-            
-        }
-        else {
-            print("audio file 3 is not found")
         }
 
     }
