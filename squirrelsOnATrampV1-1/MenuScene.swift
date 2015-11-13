@@ -1,5 +1,5 @@
 //
-//  GameScene.swift
+//  MenuScene.swift
 //  squirrelsOnATrampV1-1
 //
 //  Created by Markus Notti on 5/25/15.
@@ -13,7 +13,7 @@ import UIKit
 
 
 
-class GameScene: SKScene {
+class MenuScene: SKScene {
     
     let playButton = SKSpriteNode(imageNamed: "play_button1.png")
     

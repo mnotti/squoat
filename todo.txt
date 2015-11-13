@@ -16,3 +16,4 @@
 
 -collision bit mask for flying squirrel doesn't exist
 
+-change gameScene to "menuScene"

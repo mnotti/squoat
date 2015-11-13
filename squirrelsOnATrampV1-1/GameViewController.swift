@@ -14,7 +14,7 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-            let scene = GameScene(size: view.bounds.size)
+            let scene = MenuScene(size: view.bounds.size)
             // Configure the view.
             let skView = self.view as! SKView
             skView.showsFPS = false
@@ -33,19 +33,6 @@ class GameViewController: UIViewController {
         return true
     }
 
-   /* override func supportedInterfaceOrientations() -> Int {
-        if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
-            return Int(UIInterfaceOrientationMask.AllButUpsideDown.rawValue)
-        } else {
-            return Int(UIInterfaceOrientationMask.All.rawValue)
-        }
-    }*/
-    
-    // Swift 2
-    /*override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        let orientation: UIInterfaceOrientationMask = [UIInterfaceOrientationMask.AllButUpsideDown, UIInterfaceOrientationMask.AllButUpsideDown]
-        return orientation
-    }*/
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

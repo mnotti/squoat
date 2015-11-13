@@ -439,7 +439,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
         let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
         //delays 1 second before exiting playScene
         dispatch_after(dispatchTime, dispatch_get_main_queue(), {
-            let scene = GameScene(size: self.size)
+            let scene = MenuScene(size: self.size)
             scene.scaleMode = .AspectFill
             self.view?.presentScene(scene)
         })

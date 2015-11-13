@@ -24,7 +24,7 @@
 		4ABBEA6C1B49B89B001D0887 /* squirrelsOnATrampBackgroundV2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4ABBEA6B1B49B89B001D0887 /* squirrelsOnATrampBackgroundV2.jpg */; };
 		4ABBEA6E1B4A4A28001D0887 /* redMarker.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4ABBEA6D1B4A4A28001D0887 /* redMarker.jpg */; };
 		4AC0CEC31B13F7D500F05FC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC0CEC21B13F7D500F05FC9 /* AppDelegate.swift */; };
-		4AC0CEC71B13F7D500F05FC9 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC0CEC61B13F7D500F05FC9 /* GameScene.swift */; };
+		4AC0CEC71B13F7D500F05FC9 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC0CEC61B13F7D500F05FC9 /* MenuScene.swift */; };
 		4AC0CEC91B13F7D500F05FC9 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC0CEC81B13F7D500F05FC9 /* GameViewController.swift */; };
 		4AC0CECC1B13F7D500F05FC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AC0CECA1B13F7D500F05FC9 /* Main.storyboard */; };
 		4AC0CECE1B13F7D500F05FC9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AC0CECD1B13F7D500F05FC9 /* Images.xcassets */; };
@@ -74,7 +74,7 @@
 		4AC0CEBD1B13F7D500F05FC9 /* squirrelsOnATrampV1-1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "squirrelsOnATrampV1-1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AC0CEC11B13F7D500F05FC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4AC0CEC21B13F7D500F05FC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4AC0CEC61B13F7D500F05FC9 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		4AC0CEC61B13F7D500F05FC9 /* MenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 		4AC0CEC81B13F7D500F05FC9 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		4AC0CECB1B13F7D500F05FC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4AC0CECD1B13F7D500F05FC9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -173,7 +173,7 @@
 			children = (
 				4AC0CEC21B13F7D500F05FC9 /* AppDelegate.swift */,
 				4AC0CEFC1B14164D00F05FC9 /* PlayScene.swift */,
-				4AC0CEC61B13F7D500F05FC9 /* GameScene.swift */,
+				4AC0CEC61B13F7D500F05FC9 /* MenuScene.swift */,
 				4AC0CEC81B13F7D500F05FC9 /* GameViewController.swift */,
 				4AC0CEE61B13F87500F05FC9 /* MainSquirrelNode.swift */,
 				4AC0CEE71B13F87500F05FC9 /* VillainSquirrelFlyingNode.swift */,
@@ -339,7 +339,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AC0CEED1B13F87500F05FC9 /* VillainSquirrelNode.swift in Sources */,
-				4AC0CEC71B13F7D500F05FC9 /* GameScene.swift in Sources */,
+				4AC0CEC71B13F7D500F05FC9 /* MenuScene.swift in Sources */,
 				4AC0CEC91B13F7D500F05FC9 /* GameViewController.swift in Sources */,
 				4AC0CEFD1B14164D00F05FC9 /* PlayScene.swift in Sources */,
 				4AC0CEEE1B13F87500F05FC9 /* TrampolineNode.swift in Sources */,
