@@ -23,6 +23,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
     //sound bits
     var boingMid : AVAudioPlayer!
     var boingLow : AVAudioPlayer!
+    var bleh: AVAudioPlayer!
     //sound janky check
     
     
@@ -215,8 +216,10 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
             if(xPos > size.width
                 || xPos < 0
                 || yPos < 0){
-                    self.gameOver = true
-                    self.game_over()
+                    if(!self.gameOver){
+                        self.gameOver = true
+                        self.game_over()
+                    }
             }
             else if(yPos > size.height){
                 if(!heroNode.redMarkerVisible){
@@ -334,8 +337,10 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
         }
         
         if (firstBody.categoryBitMask == heroCategory && secondBody.categoryBitMask == villainCategory){
-            self.gameOver = true
-            self.game_over()
+            if(!gameOver){
+                self.gameOver = true
+                self.game_over()
+            }
         }
         else if(firstBody.categoryBitMask == villainCategory || secondBody.categoryBitMask == trampolineCategory){
             let randSound = random(1, max: 3)
@@ -352,6 +357,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
     
     func game_over()
     {
+        self.bleh?.play()
         self.removeActionForKey("spawn_flying_squirrels")
         self.removeActionForKey("spawn_flying_squirrels")
         
@@ -392,6 +398,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
     func setupAudio(){
         let audioFilePath1 = NSBundle.mainBundle().pathForResource("boingMid", ofType: "m4a")
         let audioFilePath2 = NSBundle.mainBundle().pathForResource("boingLow", ofType: "m4a")
+        let audioFilePath3 = NSBundle.mainBundle().pathForResource("bleh", ofType: "m4a")
+
         if audioFilePath1 != nil {
             
             let audioFileUrl = NSURL.fileURLWithPath(audioFilePath1!)
@@ -413,6 +421,18 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
         else {
             print("audio file 2 is not found")
         }
+        
+        if audioFilePath3 != nil {
+            
+            let audioFileUrl = NSURL.fileURLWithPath(audioFilePath3!)
+            
+            self.bleh = try!AVAudioPlayer(contentsOfURL: audioFileUrl)
+            
+        }
+        else {
+            print("audio file 3 is not found")
+        }
+
 
     }
     

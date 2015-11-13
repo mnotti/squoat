@@ -11,6 +11,13 @@
 		4A486D931BF422C100817AD1 /* brownMarkerTrans.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A486D921BF422C100817AD1 /* brownMarkerTrans.png */; settings = {ASSET_TAGS = (); }; };
 		4A486DA01BF5E69E00817AD1 /* boingLow.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 4A486D9E1BF5E68900817AD1 /* boingLow.m4a */; };
 		4A486DA11BF5E69E00817AD1 /* boingMid.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 4A486D9F1BF5E68900817AD1 /* boingMid.m4a */; };
+		4A486DA51BF5F94D00817AD1 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A486DA41BF5F94D00817AD1 /* iTunesArtwork.png */; settings = {ASSET_TAGS = (); }; };
+		4A486DAB1BF5FB1A00817AD1 /* Icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A486DA61BF5FB1A00817AD1 /* Icon-60@2x.png */; settings = {ASSET_TAGS = (); }; };
+		4A486DAC1BF5FB1A00817AD1 /* Icon-60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A486DA71BF5FB1A00817AD1 /* Icon-60@3x.png */; settings = {ASSET_TAGS = (); }; };
+		4A486DAD1BF5FB1A00817AD1 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A486DA81BF5FB1A00817AD1 /* Icon-72.png */; settings = {ASSET_TAGS = (); }; };
+		4A486DAE1BF5FB1A00817AD1 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A486DA91BF5FB1A00817AD1 /* Icon-72@2x.png */; settings = {ASSET_TAGS = (); }; };
+		4A486DAF1BF5FB1A00817AD1 /* Icon-83@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A486DAA1BF5FB1A00817AD1 /* Icon-83@2x.png */; settings = {ASSET_TAGS = (); }; };
+		4A486DB11BF6008900817AD1 /* bleh.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 4A486DB01BF6007F00817AD1 /* bleh.m4a */; };
 		4A4CBF371B4B87820076B6D2 /* redMarkGimp.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A4CBF361B4B87820076B6D2 /* redMarkGimp.png */; };
 		4AAB459F1B2D347D00DF0E28 /* play_button1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AAB459E1B2D347D00DF0E28 /* play_button1.png */; };
 		4ABBEA6C1B49B89B001D0887 /* squirrelsOnATrampBackgroundV2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4ABBEA6B1B49B89B001D0887 /* squirrelsOnATrampBackgroundV2.jpg */; };
@@ -51,6 +58,13 @@
 		4A486D921BF422C100817AD1 /* brownMarkerTrans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brownMarkerTrans.png; sourceTree = "<group>"; };
 		4A486D9E1BF5E68900817AD1 /* boingLow.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = boingLow.m4a; sourceTree = "<group>"; };
 		4A486D9F1BF5E68900817AD1 /* boingMid.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = boingMid.m4a; sourceTree = "<group>"; };
+		4A486DA41BF5F94D00817AD1 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
+		4A486DA61BF5FB1A00817AD1 /* Icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60@2x.png"; sourceTree = "<group>"; };
+		4A486DA71BF5FB1A00817AD1 /* Icon-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60@3x.png"; sourceTree = "<group>"; };
+		4A486DA81BF5FB1A00817AD1 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		4A486DA91BF5FB1A00817AD1 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
+		4A486DAA1BF5FB1A00817AD1 /* Icon-83@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-83@2x.png"; sourceTree = "<group>"; };
+		4A486DB01BF6007F00817AD1 /* bleh.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = bleh.m4a; sourceTree = "<group>"; };
 		4A4CBF361B4B87820076B6D2 /* redMarkGimp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redMarkGimp.png; sourceTree = "<group>"; };
 		4AAB459E1B2D347D00DF0E28 /* play_button1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_button1.png; sourceTree = "<group>"; };
 		4ABBEA6B1B49B89B001D0887 /* squirrelsOnATrampBackgroundV2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = squirrelsOnATrampBackgroundV2.jpg; sourceTree = "<group>"; };
@@ -101,6 +115,12 @@
 		4A486D8D1BF30DBD00817AD1 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				4A486DA41BF5F94D00817AD1 /* iTunesArtwork.png */,
+				4A486DA61BF5FB1A00817AD1 /* Icon-60@2x.png */,
+				4A486DA71BF5FB1A00817AD1 /* Icon-60@3x.png */,
+				4A486DA81BF5FB1A00817AD1 /* Icon-72.png */,
+				4A486DA91BF5FB1A00817AD1 /* Icon-72@2x.png */,
+				4A486DAA1BF5FB1A00817AD1 /* Icon-83@2x.png */,
 				4A4CBF361B4B87820076B6D2 /* redMarkGimp.png */,
 				4ABBEA6D1B4A4A28001D0887 /* redMarker.jpg */,
 				4A486D921BF422C100817AD1 /* brownMarkerTrans.png */,
@@ -121,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				4A486D9E1BF5E68900817AD1 /* boingLow.m4a */,
+				4A486DB01BF6007F00817AD1 /* bleh.m4a */,
 				4A486D9F1BF5E68900817AD1 /* boingMid.m4a */,
 			);
 			name = audio;
@@ -272,14 +293,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A486DB11BF6008900817AD1 /* bleh.m4a in Resources */,
 				4A486DA01BF5E69E00817AD1 /* boingLow.m4a in Resources */,
 				4A486DA11BF5E69E00817AD1 /* boingMid.m4a in Resources */,
 				4ABBEA6C1B49B89B001D0887 /* squirrelsOnATrampBackgroundV2.jpg in Resources */,
 				4AC0CED11B13F7D500F05FC9 /* LaunchScreen.xib in Resources */,
 				4AC0CEF61B13F8A200F05FC9 /* trampolineLineV1.png in Resources */,
+				4A486DAD1BF5FB1A00817AD1 /* Icon-72.png in Resources */,
 				4ABBEA6E1B4A4A28001D0887 /* redMarker.jpg in Resources */,
+				4A486DA51BF5F94D00817AD1 /* iTunesArtwork.png in Resources */,
 				4AC0CEF81B13F8A200F05FC9 /* villainSquirrelFlyingV1.png in Resources */,
 				4A4CBF371B4B87820076B6D2 /* redMarkGimp.png in Resources */,
+				4A486DAE1BF5FB1A00817AD1 /* Icon-72@2x.png in Resources */,
 				4AAB459F1B2D347D00DF0E28 /* play_button1.png in Resources */,
 				4AC0CEF91B13F8A200F05FC9 /* trampolineV1.png in Resources */,
 				4A486D931BF422C100817AD1 /* brownMarkerTrans.png in Resources */,
@@ -287,7 +312,10 @@
 				4A17DE381B1D4F79001DDC81 /* red_arrow.png in Resources */,
 				4AC0CEF71B13F8A200F05FC9 /* backgroundV1.png in Resources */,
 				4AC0CECC1B13F7D500F05FC9 /* Main.storyboard in Resources */,
+				4A486DAF1BF5FB1A00817AD1 /* Icon-83@2x.png in Resources */,
+				4A486DAC1BF5FB1A00817AD1 /* Icon-60@3x.png in Resources */,
 				4AC0CEFB1B13F8A200F05FC9 /* villainSquirrelV1.png in Resources */,
+				4A486DAB1BF5FB1A00817AD1 /* Icon-60@2x.png in Resources */,
 				4AC0CEFA1B13F8A200F05FC9 /* squirrelV1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
