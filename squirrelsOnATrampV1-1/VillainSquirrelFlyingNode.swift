@@ -11,13 +11,24 @@ import UIKit
 import SpriteKit
 
 class VillainSquirrelFlying: SKSpriteNode {
-
+    var redExclamationPoint = SKSpriteNode()
+    var redExclamationPointIsVisible: Bool
+    var movingRight: Bool
+    var movingLeft: Bool
     
     override init(texture: SKTexture!, color: SKColor, size: CGSize) {
     
+        self.redExclamationPoint = SKSpriteNode(imageNamed: "redExclamation.png")
+        self.redExclamationPointIsVisible = false
+        self.redExclamationPoint.zPosition = 2
+        self.redExclamationPoint.xScale = 0.1
+        self.redExclamationPoint.yScale = 0.1
+        self.movingRight = false
+        self.movingLeft = false
         
         let texture = SKTexture(imageNamed: "villainSquirrelFlyingV1.png")
         super.init(texture: texture, color: SKColor.clearColor(), size: texture.size())
+        
         
         self.name = "villainFlying"
         self.xScale = 0.2

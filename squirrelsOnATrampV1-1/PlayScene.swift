@@ -135,7 +135,19 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
     }
     
     func addVillainSquirrelFlying() {
-        let spawnY = random(size.height/2, max: size.height - 20)
+        
+        let villain_squirrel_flying: VillainSquirrelFlying = VillainSquirrelFlying()
+
+        let trampolineBuzz = random(1, max: 5)
+        print("tramp buzz:")
+        print(trampolineBuzz)
+        let spawnY: CGFloat
+        if (trampolineBuzz < 2){
+            spawnY = size.height/3
+        }
+        else{
+            spawnY = random(size.height/3, max: size.height - 20)
+        }
         let spawnXRand = random(0, max: 1)
 
         var actionMove: SKAction
@@ -146,15 +158,16 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
         var spawnX: CGFloat
         if (spawnXRand < 0.5){
             spawnX = -100
+            villain_squirrel_flying.movingRight = true
             actionMove = SKAction.moveTo(CGPoint(x: self.size.width + 100,y: spawnY), duration: NSTimeInterval(actualDuration))
 
         }
         else{
             spawnX = size.width + 100
+            villain_squirrel_flying.movingLeft = true
             actionMove = SKAction.moveTo(CGPoint(x: -100,y: spawnY), duration: NSTimeInterval(actualDuration))
         }
         
-        let villain_squirrel_flying: VillainSquirrelFlying = VillainSquirrelFlying()
         villain_squirrel_flying.position.x = spawnX
         villain_squirrel_flying.position.y = spawnY
         
@@ -228,7 +241,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
                     self.addChild(heroNode.redMarker)
                 }
                 else{
-                    heroNode.redMarker.position = CGPointMake(xPos, size.height - 20)
+                    heroNode.redMarker.position = CGPointMake(xPos, self.size.height - 20)
                 }
             }
             else{
@@ -276,6 +289,57 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
                 realnode.removeFromParent()
             }
         }
+        self.enumerateChildNodesWithName("villainFlying") {
+            node, stop in
+            let realnode = node as! VillainSquirrelFlying
+            if (realnode.movingLeft){
+                if (node.position.x > self.size.width + 5){
+                    realnode.redExclamationPoint.position = CGPointMake(self.size.width - 20, realnode.position.y)
+                    if (!realnode.redExclamationPointIsVisible){
+                        self.addChild(realnode.redExclamationPoint)
+                        realnode.redExclamationPointIsVisible = true
+                    }
+                }
+                else if (realnode.redExclamationPointIsVisible){
+                    realnode.redExclamationPointIsVisible = false
+                    realnode.redExclamationPoint.removeFromParent()
+                    
+                }
+                if (realnode.position.x < -10){
+                    if (realnode.redExclamationPointIsVisible){
+                        realnode.redExclamationPointIsVisible = false
+                        realnode.redExclamationPoint.removeFromParent()
+                    }
+                    realnode.removeFromParent()
+                }
+            }
+            else if(realnode.movingRight){
+                if (node.position.x < 5){
+                    realnode.redExclamationPoint.position = CGPointMake(20, realnode.position.y)
+                    if (!realnode.redExclamationPointIsVisible){
+                        self.addChild(realnode.redExclamationPoint)
+                        realnode.redExclamationPointIsVisible = true
+                    }
+                }
+                else if (realnode.redExclamationPointIsVisible){
+                    realnode.redExclamationPointIsVisible = false
+                    realnode.redExclamationPoint.removeFromParent()
+                    
+                }
+                if (realnode.position.x > self.size.width + 10){
+                    if (realnode.redExclamationPointIsVisible){
+                        realnode.redExclamationPointIsVisible = false
+                        realnode.redExclamationPoint.removeFromParent()
+                    }
+                    realnode.removeFromParent()
+                }
+
+            }
+            else{
+                print("no direction assigned to flying squirrel")
+            }
+        }
+        
     }
     
     func handleVillainSpawning(currentTime: CFTimeInterval){
