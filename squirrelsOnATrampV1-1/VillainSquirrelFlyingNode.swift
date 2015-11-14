@@ -12,7 +12,10 @@ import SpriteKit
 
 class VillainSquirrelFlying: SKSpriteNode {
     var redExclamationPoint = SKSpriteNode()
+    var explosion = SKSpriteNode()
+
     var redExclamationPointIsVisible: Bool
+    var explosionIsVisible: Bool
     var movingRight: Bool
     var movingLeft: Bool
     
@@ -25,6 +28,12 @@ class VillainSquirrelFlying: SKSpriteNode {
         self.redExclamationPoint.yScale = 0.1
         self.movingRight = false
         self.movingLeft = false
+        
+        self.explosion = SKSpriteNode(imageNamed: "explosion1@3x.png")
+        self.explosionIsVisible = false
+        self.explosion.zPosition = 2
+        self.explosion.xScale = 0.9
+        self.explosion.yScale = 0.9
         
         let texture = SKTexture(imageNamed: "villainSquirrelFlyingV1.png")
         super.init(texture: texture, color: SKColor.clearColor(), size: texture.size())

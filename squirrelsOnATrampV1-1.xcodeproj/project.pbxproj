@@ -21,6 +21,7 @@
 		4A486DB31BF6899300817AD1 /* redExclamation.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A486DB21BF6899300817AD1 /* redExclamation.png */; settings = {ASSET_TAGS = (); }; };
 		4A4CBF371B4B87820076B6D2 /* redMarkGimp.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A4CBF361B4B87820076B6D2 /* redMarkGimp.png */; };
 		4AAB459F1B2D347D00DF0E28 /* play_button1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AAB459E1B2D347D00DF0E28 /* play_button1.png */; };
+		4AAEA8F51BF7ED03008BEA67 /* explosion1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AAEA8F41BF7ED03008BEA67 /* explosion1@3x.png */; settings = {ASSET_TAGS = (); }; };
 		4ABBEA6C1B49B89B001D0887 /* squirrelsOnATrampBackgroundV2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4ABBEA6B1B49B89B001D0887 /* squirrelsOnATrampBackgroundV2.jpg */; };
 		4ABBEA6E1B4A4A28001D0887 /* redMarker.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4ABBEA6D1B4A4A28001D0887 /* redMarker.jpg */; };
 		4AC0CEC31B13F7D500F05FC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC0CEC21B13F7D500F05FC9 /* AppDelegate.swift */; };
@@ -69,6 +70,7 @@
 		4A486DB21BF6899300817AD1 /* redExclamation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redExclamation.png; sourceTree = "<group>"; };
 		4A4CBF361B4B87820076B6D2 /* redMarkGimp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redMarkGimp.png; sourceTree = "<group>"; };
 		4AAB459E1B2D347D00DF0E28 /* play_button1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_button1.png; sourceTree = "<group>"; };
+		4AAEA8F41BF7ED03008BEA67 /* explosion1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "explosion1@3x.png"; sourceTree = "<group>"; };
 		4ABBEA6B1B49B89B001D0887 /* squirrelsOnATrampBackgroundV2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = squirrelsOnATrampBackgroundV2.jpg; sourceTree = "<group>"; };
 		4ABBEA6D1B4A4A28001D0887 /* redMarker.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = redMarker.jpg; sourceTree = "<group>"; };
 		4AC0CEBD1B13F7D500F05FC9 /* squirrelsOnATrampV1-1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "squirrelsOnATrampV1-1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,6 +125,7 @@
 				4A486DA81BF5FB1A00817AD1 /* Icon-72.png */,
 				4A486DA91BF5FB1A00817AD1 /* Icon-72@2x.png */,
 				4A486DAA1BF5FB1A00817AD1 /* Icon-83@2x.png */,
+				4AAEA8F41BF7ED03008BEA67 /* explosion1@3x.png */,
 				4A486DB21BF6899300817AD1 /* redExclamation.png */,
 				4A4CBF361B4B87820076B6D2 /* redMarkGimp.png */,
 				4ABBEA6D1B4A4A28001D0887 /* redMarker.jpg */,
@@ -307,6 +310,7 @@
 				4A486DA51BF5F94D00817AD1 /* iTunesArtwork.png in Resources */,
 				4AC0CEF81B13F8A200F05FC9 /* villainSquirrelFlyingV1.png in Resources */,
 				4A4CBF371B4B87820076B6D2 /* redMarkGimp.png in Resources */,
+				4AAEA8F51BF7ED03008BEA67 /* explosion1@3x.png in Resources */,
 				4A486DAE1BF5FB1A00817AD1 /* Icon-72@2x.png in Resources */,
 				4AAB459F1B2D347D00DF0E28 /* play_button1.png in Resources */,
 				4AC0CEF91B13F8A200F05FC9 /* trampolineV1.png in Resources */,

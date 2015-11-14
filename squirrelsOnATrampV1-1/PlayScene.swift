@@ -404,6 +404,17 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
         
         if (firstBody.categoryBitMask == heroCategory && secondBody.categoryBitMask == villainCategory
             || firstBody.categoryBitMask == heroCategory && secondBody.categoryBitMask == villainFlyingCategory){
+                if (secondBody.categoryBitMask == villainFlyingCategory){
+                    let flyingSquirrel = secondBody.node as! VillainSquirrelFlying
+                    if (!flyingSquirrel.explosionIsVisible){
+                        flyingSquirrel.explosion.position.x = flyingSquirrel.position.x
+                        flyingSquirrel.explosion.position.y = flyingSquirrel.position.y
+                        self.addChild(flyingSquirrel.explosion)
+                        flyingSquirrel.explosionIsVisible = true
+                        flyingSquirrel.removeFromParent()
+                    }
+                    
+                }
             if(!gameOver){
                 self.gameOver = true
                 self.game_over()
