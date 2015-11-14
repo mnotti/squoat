@@ -37,9 +37,9 @@ class VillainSquirrelFlying: SKSpriteNode {
         self.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "villainSquirrelFlyingV1.png"), size: self.size)
         if let physics = self.physicsBody {
             
-            physics.categoryBitMask = 0x1 << 1
-            physics.contactTestBitMask = (0x1 << 0) | (0x1 << 2)
-            physics.collisionBitMask = (0x1 << 0) | (0x1 << 2)
+            physics.categoryBitMask = 0x1 << 3
+            physics.contactTestBitMask = (0x1 << 0)
+            physics.collisionBitMask = (0x1 << 0)
             
             
             

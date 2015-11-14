@@ -23,6 +23,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
     let heroCategory : UInt32 = 0x1 << 0
     let villainCategory : UInt32 = 0x1 << 1
     let trampolineCategory: UInt32 = 0x1 << 2
+    let villainFlyingCategory: UInt32 = 0x1 << 3
     
     //////////////////////
     //audio bits globals//
@@ -401,7 +402,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
             secondBody = contact.bodyA
         }
         
-        if (firstBody.categoryBitMask == heroCategory && secondBody.categoryBitMask == villainCategory){
+        if (firstBody.categoryBitMask == heroCategory && secondBody.categoryBitMask == villainCategory
+            || firstBody.categoryBitMask == heroCategory && secondBody.categoryBitMask == villainFlyingCategory){
             if(!gameOver){
                 self.gameOver = true
                 self.game_over()
