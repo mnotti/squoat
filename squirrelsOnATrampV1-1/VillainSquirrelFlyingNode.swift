@@ -19,7 +19,7 @@ class VillainSquirrelFlying: SKSpriteNode {
     
     override init(texture: SKTexture!, color: SKColor, size: CGSize) {
     
-        self.redExclamationPoint = SKSpriteNode(imageNamed: "redExclamation.png")
+        self.redExclamationPoint = SKSpriteNode(imageNamed: "redExclamation")
         self.redExclamationPointIsVisible = false
         self.redExclamationPoint.zPosition = 2
         self.redExclamationPoint.xScale = 0.1
@@ -28,7 +28,7 @@ class VillainSquirrelFlying: SKSpriteNode {
         self.movingLeft = false
         
                 
-        let texture = SKTexture(imageNamed: "villainSquirrelFlyingV1.png")
+        let texture = SKTexture(imageNamed: "villainSquirrelFlying")
         super.init(texture: texture, color: SKColor.clearColor(), size: texture.size())
         
         
@@ -36,7 +36,7 @@ class VillainSquirrelFlying: SKSpriteNode {
         self.xScale = 0.2
         self.yScale = 0.2
         self.zPosition = 2
-        self.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "villainSquirrelFlyingV1.png"), size: self.size)
+        self.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "villainSquirrelFlying"), size: self.size)
         if let physics = self.physicsBody {
             
             physics.categoryBitMask = 0x1 << 3

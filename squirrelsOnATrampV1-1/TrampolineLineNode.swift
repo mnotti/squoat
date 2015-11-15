@@ -14,7 +14,7 @@ class TrampolineLineNode: SKSpriteNode {
     
     override init(texture: SKTexture!, color: SKColor, size: CGSize) {
         
-        let texture = SKTexture(imageNamed: "trampolineLineV1.png")
+        let texture = SKTexture(imageNamed: "trampolineLine")
         super.init(texture: texture, color: SKColor.clearColor(), size: texture.size())
         
         self.name = "trampolineliney"
@@ -22,7 +22,7 @@ class TrampolineLineNode: SKSpriteNode {
         self.yScale = 0.75
         self.zPosition = 1
         
-        self.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "trampolineLineV1.png"), size: self.size)
+        self.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "trampolineLine"), size: self.size)
         if let physics = self.physicsBody {
             
             physics.categoryBitMask = 0x1 << 2

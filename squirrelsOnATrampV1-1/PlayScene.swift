@@ -42,7 +42,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
     //image globals//
     /////////////////
     
-    var bgImage = SKSpriteNode(imageNamed: "squirrelsOnATrampBackgroundV2.jpg")
+    var bgImage = SKSpriteNode(imageNamed: "background")
     var scoreLabel = SKLabelNode(fontNamed:"Chalkduster")
     
     ////////////////////////////////////

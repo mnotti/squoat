@@ -14,7 +14,7 @@ class TrampolineNode: SKSpriteNode {
     
     override init(texture: SKTexture!, color: SKColor, size: CGSize) {
     
-        let texture = SKTexture(imageNamed: "trampolineV1.png")
+        let texture = SKTexture(imageNamed: "trampoline")
         super.init(texture: texture, color: SKColor.clearColor(), size: texture.size())
         
         self.name = "trampoliney"
