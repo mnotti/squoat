@@ -13,7 +13,7 @@ import SpriteKit
 class MainSquirrel: SKSpriteNode {
     var redMarker = SKSpriteNode()
     var redMarkerVisible: Bool
-    
+   
     override init(texture: SKTexture!, color: SKColor, size: CGSize) {
         
         self.redMarker = SKSpriteNode(imageNamed:"redMarkGimp.png")

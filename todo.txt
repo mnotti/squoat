@@ -17,3 +17,5 @@
 -collision bit mask for flying squirrel doesn't exist
 
 -explosion when you hit the planes!
+
+-change the explosion images to have transparent backgrounds

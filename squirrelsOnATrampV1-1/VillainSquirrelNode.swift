@@ -9,10 +9,16 @@
 import Foundation
 import UIKit
 import SpriteKit
+import AVFoundation
+
 
 class VillainSquirrel: SKSpriteNode {
     var brownMarker = SKSpriteNode()
     var brownMarkerVisible: Bool
+    var boingMid: AVAudioPlayer!
+    var boingLow: AVAudioPlayer!
+    var soundPlayed: Bool
+    
     
     override init(texture: SKTexture!, color: SKColor, size: CGSize) {
         
@@ -23,6 +29,7 @@ class VillainSquirrel: SKSpriteNode {
         self.brownMarker.yScale = 0.25
 
         self.brownMarkerVisible = false
+        self.soundPlayed = false
         
         let texture = SKTexture(imageNamed: "villainSquirrelV1.png")
         super.init(texture: texture, color: SKColor.clearColor(), size: texture.size())
@@ -45,6 +52,7 @@ class VillainSquirrel: SKSpriteNode {
             physics.friction = 0
             physics.restitution = 1.05
         }
+        self.setupAudio()
 
 
         
@@ -52,6 +60,50 @@ class VillainSquirrel: SKSpriteNode {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func playSound(){
+        
+        if (!soundPlayed){
+            let rand = arc4random_uniform(2)
+            if (rand < 1){
+                boingLow.play()
+            }
+            else{
+                boingMid.play()
+            }
+            soundPlayed = true
+            
+            //allows sound to be played again after 1 second (avoids the muliple collision problem)
+            let seconds = 1.0
+            let delay = seconds * Double(NSEC_PER_SEC)
+            let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+            
+            dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                    self.soundPlayed = false
+            })
+
+            
+        }
+    }
+    
+    func setupAudio(){
+        if let audioFilePath1 = NSBundle.mainBundle().pathForResource("boingMid", ofType: "m4a") {
+            let audioFileUrl = NSURL.fileURLWithPath(audioFilePath1)
+            self.boingMid = try!AVAudioPlayer(contentsOfURL: audioFileUrl)
+            
+        }
+        else {
+            print("audio file 1 is not found")
+        }
+        
+        if  let audioFilePath2 = NSBundle.mainBundle().pathForResource("boingLow", ofType: "m4a") {
+            let audioFileUrl = NSURL.fileURLWithPath(audioFilePath2)
+            self.boingLow = try!AVAudioPlayer(contentsOfURL: audioFileUrl)
+        }
+        else {
+            print("audio file 2 is not found")
+        }
     }
     
     

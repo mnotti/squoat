@@ -29,8 +29,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
     //audio bits globals//
     //////////////////////
     
-    var boingMid : AVAudioPlayer!
-    var boingLow : AVAudioPlayer!
     var bleh: AVAudioPlayer!
     
     ////////////////////////
@@ -404,32 +402,15 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
         
         if (firstBody.categoryBitMask == heroCategory && secondBody.categoryBitMask == villainCategory
             || firstBody.categoryBitMask == heroCategory && secondBody.categoryBitMask == villainFlyingCategory){
-                if (secondBody.categoryBitMask == villainFlyingCategory){
-                    let flyingSquirrel = secondBody.node as! VillainSquirrelFlying
-                    if (!flyingSquirrel.explosionIsVisible){
-                        flyingSquirrel.explosion.position.x = flyingSquirrel.position.x
-                        flyingSquirrel.explosion.position.y = flyingSquirrel.position.y
-                        self.addChild(flyingSquirrel.explosion)
-                        flyingSquirrel.explosionIsVisible = true
-                        flyingSquirrel.removeFromParent()
-                    }
-                    
-                }
+
             if(!gameOver){
                 self.gameOver = true
                 self.game_over()
             }
         }
         else if(firstBody.categoryBitMask == villainCategory || secondBody.categoryBitMask == trampolineCategory){
-            let randSound = random(1, max: 3)
-            if(randSound >= 1 && randSound < 2){
-                print("should play low")
-                self.boingLow?.play()
-            }
-            else{
-                print("should play mid")
-                self.boingMid?.play()
-            }
+            let villainNode = firstBody.node as! VillainSquirrel
+            villainNode.playSound()
         }
     }
     
@@ -472,23 +453,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
     }
     
     func setupAudio(){
-        
-        if let audioFilePath1 = NSBundle.mainBundle().pathForResource("boingMid", ofType: "m4a") {
-            let audioFileUrl = NSURL.fileURLWithPath(audioFilePath1)
-            self.boingMid = try!AVAudioPlayer(contentsOfURL: audioFileUrl)
-            
-        }
-        else {
-            print("audio file 1 is not found")
-        }
-        
-        if  let audioFilePath2 = NSBundle.mainBundle().pathForResource("boingLow", ofType: "m4a") {
-            let audioFileUrl = NSURL.fileURLWithPath(audioFilePath2)
-            self.boingLow = try!AVAudioPlayer(contentsOfURL: audioFileUrl)
-        }
-        else {
-            print("audio file 2 is not found")
-        }
+
         
         if let audioFilePath3 = NSBundle.mainBundle().pathForResource("bleh", ofType: "m4a"){
             let audioFileUrl = NSURL.fileURLWithPath(audioFilePath3)
@@ -500,6 +465,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
 
 
     }
+
     
     func random() -> CGFloat {
         return CGFloat(Float(arc4random()) / 0xFFFFFFFF)
