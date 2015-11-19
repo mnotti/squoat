@@ -8,12 +8,24 @@
 
 import UIKit
 import SpriteKit
+import GoogleMobileAds
+
 
 class GameViewController: UIViewController {
 
+    @IBOutlet weak var bottomBannerView: GADBannerView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
 
+            self.bottomBannerView.adUnitID = "ca-app-pub-7629957216188544/8769132116"
+            self.bottomBannerView.rootViewController = self
+            let request: GADRequest = GADRequest()
+            //request.testDevices = @[ @"7aaf52e9468a6036d42aa04237e1479c" ]
+            self.bottomBannerView.loadRequest(request)
+        
+        
             let scene = MenuScene(size: view.bounds.size)
             // Configure the view.
             let skView = self.view as! SKView

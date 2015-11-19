@@ -93,17 +93,12 @@ class VillainSquirrel: SKSpriteNode {
             self.boingMid = try!AVAudioPlayer(contentsOfURL: audioFileUrl)
             
         }
-        else {
-            print("audio file 1 is not found")
-        }
         
         if  let audioFilePath2 = NSBundle.mainBundle().pathForResource("boingLow", ofType: "m4a") {
             let audioFileUrl = NSURL.fileURLWithPath(audioFilePath2)
             self.boingLow = try!AVAudioPlayer(contentsOfURL: audioFileUrl)
         }
-        else {
-            print("audio file 2 is not found")
-        }
+
     }
     
     

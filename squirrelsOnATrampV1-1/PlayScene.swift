@@ -335,9 +335,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
                 }
 
             }
-            else{
-                print("error: no direction assigned to flying squirrel")
-            }
         }
         
     }
@@ -458,9 +455,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
         if let audioFilePath3 = NSBundle.mainBundle().pathForResource("bleh", ofType: "m4a"){
             let audioFileUrl = NSURL.fileURLWithPath(audioFilePath3)
             self.bleh = try!AVAudioPlayer(contentsOfURL: audioFileUrl)
-        }
-        else {
-            print("audio file 3 is not found")
         }
 
 
