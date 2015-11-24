@@ -18,4 +18,5 @@
 
 -add a global leaderboard
 
+-integrate with iAD instead of adMob
 
