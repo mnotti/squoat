@@ -18,7 +18,6 @@ class VillainSquirrelFlying: SKSpriteNode {
     var movingLeft: Bool
     
     override init(texture: SKTexture!, color: SKColor, size: CGSize) {
-    
         self.redExclamationPoint = SKSpriteNode(imageNamed: "redExclamation")
         self.redExclamationPointIsVisible = false
         self.redExclamationPoint.zPosition = 2
@@ -26,11 +25,9 @@ class VillainSquirrelFlying: SKSpriteNode {
         self.redExclamationPoint.yScale = 0.1
         self.movingRight = false
         self.movingLeft = false
-        
                 
         let texture = SKTexture(imageNamed: "villainSquirrelFlying")
         super.init(texture: texture, color: SKColor.clearColor(), size: texture.size())
-        
         
         self.name = "villainFlying"
         self.xScale = 0.2
@@ -43,24 +40,16 @@ class VillainSquirrelFlying: SKSpriteNode {
             physics.contactTestBitMask = (0x1 << 0)
             physics.collisionBitMask = (0x1 << 0)
             
-            
-            
             physics.affectedByGravity = false
             physics.allowsRotation = false
             physics.dynamic = true;
             
             physics.friction = 0
             physics.restitution = 1.05
-            
         }
-        
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
-
 }

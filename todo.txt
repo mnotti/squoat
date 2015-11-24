@@ -12,10 +12,10 @@
 
 -handle when people close the app?
 
--single sound for one bounce
-
 -collision bit mask for flying squirrel doesn't exist
 
--explosion when you hit the planes!
+-add game mode where you have to stay on the trampoline, squirrels only collide with you bump you around.
 
--change the explosion images to have transparent backgrounds
+-add a global leaderboard
+
+

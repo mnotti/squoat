@@ -19,10 +19,7 @@ class VillainSquirrel: SKSpriteNode {
     var boingLow: AVAudioPlayer!
     var soundPlayed: Bool
     
-    
     override init(texture: SKTexture!, color: SKColor, size: CGSize) {
-        
-
         self.brownMarker = SKSpriteNode(imageNamed:"brownMarker")
         self.brownMarker.zPosition = 2
         self.brownMarker.xScale = 0.25
@@ -53,9 +50,6 @@ class VillainSquirrel: SKSpriteNode {
             physics.restitution = 1.05
         }
         self.setupAudio()
-
-
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -63,7 +57,6 @@ class VillainSquirrel: SKSpriteNode {
     }
     
     func playSound(){
-        
         if (!soundPlayed){
             let rand = arc4random_uniform(2)
             if (rand < 1){
@@ -82,8 +75,6 @@ class VillainSquirrel: SKSpriteNode {
             dispatch_after(dispatchTime, dispatch_get_main_queue(), {
                     self.soundPlayed = false
             })
-
-            
         }
     }
     
@@ -91,15 +82,10 @@ class VillainSquirrel: SKSpriteNode {
         if let audioFilePath1 = NSBundle.mainBundle().pathForResource("boingMid", ofType: "m4a") {
             let audioFileUrl = NSURL.fileURLWithPath(audioFilePath1)
             self.boingMid = try!AVAudioPlayer(contentsOfURL: audioFileUrl)
-            
         }
-        
         if  let audioFilePath2 = NSBundle.mainBundle().pathForResource("boingLow", ofType: "m4a") {
             let audioFileUrl = NSURL.fileURLWithPath(audioFilePath2)
             self.boingLow = try!AVAudioPlayer(contentsOfURL: audioFileUrl)
         }
-
     }
-    
-    
-    }
+}

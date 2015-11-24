@@ -13,7 +13,6 @@ import SpriteKit
 class TrampolineNode: SKSpriteNode {
     
     override init(texture: SKTexture!, color: SKColor, size: CGSize) {
-    
         let texture = SKTexture(imageNamed: "trampoline")
         super.init(texture: texture, color: SKColor.clearColor(), size: texture.size())
         
@@ -21,11 +20,9 @@ class TrampolineNode: SKSpriteNode {
         self.xScale = 1.75
         self.yScale = 0.75
         self.zPosition = 1
-        
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
 }

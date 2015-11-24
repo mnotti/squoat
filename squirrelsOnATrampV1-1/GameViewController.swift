@@ -22,7 +22,6 @@ class GameViewController: UIViewController {
             self.bottomBannerView.adUnitID = "ca-app-pub-7629957216188544/8769132116"
             self.bottomBannerView.rootViewController = self
             let request: GADRequest = GADRequest()
-            //request.testDevices = @[ @"7aaf52e9468a6036d42aa04237e1479c" ]
             self.bottomBannerView.loadRequest(request)
         
         
