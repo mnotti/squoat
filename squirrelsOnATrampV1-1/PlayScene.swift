@@ -11,6 +11,8 @@ import CoreMotion
 import UIKit
 import SpriteKit
 import AVFoundation
+import Parse
+
 
 
 class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
@@ -442,11 +444,22 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
     func saveScore(score: Int){
         
         //Check if score is higher than NSUserDefaults stored value and change NSUserDefaults stored value if it's true
-        if score > NSUserDefaults.standardUserDefaults().integerForKey("squirrelTrampHighScore1"){
+        if (score > NSUserDefaults.standardUserDefaults().integerForKey("squirrelTrampHighScore1")){
             NSUserDefaults.standardUserDefaults().setInteger(score, forKey: "squirrelTrampHighScore1")
             NSUserDefaults.standardUserDefaults().synchronize()
         }
+        //TODO: if score is good enough to be put on leaderboards
+        saveParseHighScore(score)
     
+    }
+    
+    func saveParseHighScore(score: Int){
+        let scoreObject = PFObject(className: "Highscore")
+        scoreObject["score"] = score
+        scoreObject.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+            print("Object has been saved.")
+        }
+
     }
     
     func setupAudio(){

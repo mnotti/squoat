@@ -1,3 +1,7 @@
+-online highscores spawn on the right side of the screen
+->swipe left to see high scores (as you swipe, update of scores starts, all nodes on the screen move the length of the screen; as soon as update finishes, the score nodes update...
+ 
+
 -maybe also a distance count for how far off?
 
 -flying squirrels don't fly backwards?
