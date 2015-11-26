@@ -46,6 +46,12 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
     
     var bgImage = SKSpriteNode(imageNamed: "background")
     var scoreLabel = SKLabelNode(fontNamed:"Chalkduster")
+    let myTextField: UITextField = UITextField(frame: CGRect(x: 0, y: 0, width: 200.00, height: 40.00));
+    let button   = UIButton(type: UIButtonType.System) as UIButton
+    let initialsLabel2 = SKLabelNode(fontNamed: "Chalkduster")
+
+
+
     
     ////////////////////////////////////
     //time management initialization////
@@ -426,19 +432,17 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
             }
         }
         
-        
         let seconds = 1.0
         let delay = seconds * Double(NSEC_PER_SEC)  // nanoseconds per seconds
         let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
         //delays 1 second before exiting playScene
         dispatch_after(dispatchTime, dispatch_get_main_queue(), {
-            let scene = MenuScene(size: self.size)
-            scene.scaleMode = .AspectFill
-            self.view?.presentScene(scene)
+            self.saveScore(self.score)
         })
+
         
         //saves the score or doesn't (if it doesn't make the high score)
-        saveScore(score)
+
     }
     
     func saveScore(score: Int){
@@ -449,18 +453,105 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
             NSUserDefaults.standardUserDefaults().synchronize()
         }
         //TODO: if score is good enough to be put on leaderboards
-        saveParseHighScore(score)
+        checkIfGlobalHighScore(score)
     
     }
     
-    func saveParseHighScore(score: Int){
-        let scoreObject = PFObject(className: "Highscore")
-        scoreObject["score"] = score
-        scoreObject.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
-            print("Object has been saved.")
+    func checkIfGlobalHighScore(score: Int){
+        var isHighScore = false
+        let query = PFQuery(className: "Highscore")
+        do{
+            let highscores = try query.findObjects()
+            let sortedScores = highscores.sort { $0["score"].compare($1["score"] as! Int) == .OrderedDescending }  // use `sorted` in Swift 1.2
+            let n = min(highscores.count - 1,9)
+            if (n >= 0){
+                for i in 0...n{
+                    if (score > sortedScores[i]["score"] as! Int){
+                        isHighScore = true
+                        saveGlobalHighScore(score)
+                        break
+                    }
+                }
+            }
+            else{
+                isHighScore = true
+                saveGlobalHighScore(score)
+                
+            }
+
         }
+        catch{
+            print(error)
+        }
+        if (!isHighScore){
+            let scene = MenuScene(size: self.size)
+            scene.scaleMode = .AspectFill
+            self.view?.presentScene(scene)
+        }
+        
 
     }
+    
+    func saveGlobalHighScore(score: Int){
+        
+        let initialsLabel1 = SKLabelNode(fontNamed: "Chalkduster")
+        initialsLabel1.text = "Congrats! You made the global top 10!"
+        initialsLabel1.fontSize = 15;
+        initialsLabel1.position = CGPointMake(size.width/2, size.height - 60)
+        initialsLabel1.name = "initialsLabel"
+        initialsLabel1.zPosition = 1
+        self.addChild(initialsLabel1)
+        
+        initialsLabel2.text = "Enter Your Initials..."
+        initialsLabel2.fontSize = 15;
+        initialsLabel2.position = CGPointMake(size.width/2, size.height - 80)
+        initialsLabel2.name = "initialsLabel2"
+        initialsLabel2.zPosition = 1
+        self.addChild(initialsLabel2)
+        
+        myTextField.tag = 100
+        myTextField.backgroundColor = UIColor.whiteColor()
+        myTextField.frame = CGRectMake(size.width/2 - 30, 90, 60, 50)
+        myTextField.borderStyle = UITextBorderStyle.RoundedRect
+        self.view!.addSubview(myTextField)
+        
+        button.tag = 200
+        button.frame = CGRectMake(size.width/2 - 50, 150, 100, 50)
+        button.backgroundColor = UIColor.greenColor()
+        button.layer.cornerRadius = 5
+        button.setTitle("Continue", forState: UIControlState.Normal)
+        button.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        self.view!.addSubview(button)
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        myTextField.resignFirstResponder()
+    }
+    
+    func buttonAction(sender:UIButton!)
+    {
+        let initials = self.myTextField.text
+        if (initials!.characters.count > 3 || initials!.characters.count < 3){
+            self.initialsLabel2.text = "Must Be 3 Chars!"
+            self.initialsLabel2.fontColor = SKColor.redColor()
+        }
+        else{
+            self.view!.viewWithTag(100)?.removeFromSuperview()
+            self.view!.viewWithTag(200)?.removeFromSuperview()
+            
+            let scoreObject = PFObject(className: "Highscore")
+            scoreObject["score"] = score
+            scoreObject["username"] = initials
+            scoreObject.saveInBackground()
+            
+            let scene = MenuScene(size: self.size)
+            scene.scaleMode = .AspectFill
+            self.view?.presentScene(scene)
+        }
+    }
+
+
     
     func setupAudio(){
 
