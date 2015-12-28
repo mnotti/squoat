@@ -12,6 +12,8 @@ import UIKit
 import SpriteKit
 import AVFoundation
 import Parse
+import SystemConfiguration
+
 
 
 
@@ -39,6 +41,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
     
     var score = 0
     var gameOver = false
+    var upSwipes = 0
     
     /////////////////
     //image globals//
@@ -217,7 +220,10 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
             
             switch swipeGesture.direction {
             case UISwipeGestureRecognizerDirection.Up:
-                childNodeWithName("hero")?.physicsBody?.applyForce(CGVectorMake(0, 500))
+                if (upSwipes == 0){
+                    childNodeWithName("hero")?.physicsBody?.applyForce(CGVectorMake(0, 100))
+                    upSwipes++
+                }
             case UISwipeGestureRecognizerDirection.Down:
                 childNodeWithName("hero")?.physicsBody?.velocity = CGVectorMake(0,-25)
             default:
@@ -382,7 +388,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
         if let data = motionManager.accelerometerData {
             
             if (fabs(data.acceleration.y) > 0.05) {
-                 hero?.physicsBody?.applyForce(CGVectorMake(CGFloat(data.acceleration.y) * 100, 0))
+                 hero?.physicsBody?.applyForce(CGVectorMake(CGFloat(data.acceleration.y) * 25, 0))//formally 100 (not 25)
             }
         }
     }
@@ -413,9 +419,14 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
                 self.game_over()
             }
         }
-        else if(firstBody.categoryBitMask == villainCategory || secondBody.categoryBitMask == trampolineCategory){
+        else if(firstBody.categoryBitMask == villainCategory && secondBody.categoryBitMask == trampolineCategory){
             let villainNode = firstBody.node as! VillainSquirrel
             villainNode.playSound()
+        }
+        
+        if(firstBody.categoryBitMask == heroCategory && secondBody.categoryBitMask == trampolineCategory){
+            upSwipes = 0
+            print("hero hit tramp")
         }
     }
     
@@ -453,8 +464,16 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
             NSUserDefaults.standardUserDefaults().synchronize()
         }
         //TODO: if score is good enough to be put on leaderboards
-        checkIfGlobalHighScore(score)
-    
+        if (connectedToNetwork()){
+            checkIfGlobalHighScore(score)
+        }
+        else{
+            print("is not connected")
+            let scene = MenuScene(size: self.size)
+            scene.scaleMode = .AspectFill
+            self.view?.presentScene(scene)
+
+        }
     }
     
     func checkIfGlobalHighScore(score: Int){
@@ -484,6 +503,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
             print(error)
         }
         if (!isHighScore){
+            print("is not high score")
             let scene = MenuScene(size: self.size)
             scene.scaleMode = .AspectFill
             self.view?.presentScene(scene)
@@ -526,6 +546,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        print("touched")
         myTextField.resignFirstResponder()
     }
     
@@ -545,6 +566,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
             scoreObject["username"] = initials
             scoreObject.saveInBackground()
             
+            print("######1")
             let scene = MenuScene(size: self.size)
             scene.scaleMode = .AspectFill
             self.view?.presentScene(scene)
@@ -571,6 +593,28 @@ class PlayScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate{
     
     func random(min: CGFloat, max: CGFloat) -> CGFloat {
         return random() * (max - min) + min
+    }
+    
+    func connectedToNetwork() -> Bool {
+        
+        var zeroAddress = sockaddr_in()
+        zeroAddress.sin_len = UInt8(sizeofValue(zeroAddress))
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+        
+        guard let defaultRouteReachability = withUnsafePointer(&zeroAddress, {
+            SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0))
+        }) else {
+            return false
+        }
+        
+        var flags : SCNetworkReachabilityFlags = []
+        if !SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags) {
+            return false
+        }
+        
+        let isReachable = flags.contains(.Reachable)
+        let needsConnection = flags.contains(.ConnectionRequired)
+        return (isReachable && !needsConnection)
     }
     
 

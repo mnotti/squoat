@@ -33,7 +33,9 @@ class MainSquirrel: SKSpriteNode {
         if let physics = self.physicsBody {
             
             physics.categoryBitMask = 0x1 << 0
-            physics.contactTestBitMask = 0x1 << 1
+            physics.contactTestBitMask = (0x1 << 1) | (0x1 << 2)
+            physics.collisionBitMask = (0x1 << 1) | (0x1 << 2)
+
             
             
             physics.affectedByGravity = true
